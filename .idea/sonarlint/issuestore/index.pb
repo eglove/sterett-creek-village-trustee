@@ -1,14 +1,10 @@
 
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-?
-.husky/pre-push,5\9\593d8ffe7c61610f0e23c3534ef747eaf3466f44
 A
 .husky/pre-commit,a\b\ab6c0c74cc7cd7c8c8b24da380d18aa4667658ae
 >
 .eslintrc.json,7\1\71c20a341bfe32aa5cd5b4384e94f942bab6a7d3
-<
-package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 Z
 *app/feature/auth/hooks/use-sign-up-form.ts,c\4\c49cd6518956743892185971cb1d5dad90de27c6
 Z
