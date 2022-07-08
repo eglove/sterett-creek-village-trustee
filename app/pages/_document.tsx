@@ -1,13 +1,19 @@
-import { Document, Html, DocumentHead, Main, BlitzScript /*DocumentContext*/ } from "blitz"
+import {
+  BlitzScript,
+  Document as DocumentContext,
+  DocumentHead,
+  Html,
+  Main,
+} from 'blitz';
 
-class MyDocument extends Document {
+class Document extends DocumentContext {
   // Only uncomment if you need to customize this behaviour
   // static async getInitialProps(ctx: DocumentContext) {
   //   const initialProps = await Document.getInitialProps(ctx)
   //   return {...initialProps}
   // }
 
-  render() {
+  render(): JSX.Element {
     return (
       <Html lang="en">
         <DocumentHead />
@@ -16,8 +22,8 @@ class MyDocument extends Document {
           <BlitzScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default Document;

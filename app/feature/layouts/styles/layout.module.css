@@ -1,0 +1,8 @@
+.Navigation {
+  margin-bottom: 32px;
+}
+
+.Title a,
+.Title a:visited {
+  color: hsl(0deg 0% 0%);
+}

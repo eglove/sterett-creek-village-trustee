@@ -12,17 +12,22 @@ generator client {
 
 // --------------------------------------
 
-model User {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  name           String?
-  email          String   @unique
-  hashedPassword String?
-  role           String   @default("USER")
+model Convenant {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  fileUrl   String
+}
 
-  tokens   Token[]
-  sessions Session[]
+model Event {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  description String
+  startsAt    DateTime
+  endsAt      DateTime
 }
 
 model Session {
@@ -55,6 +60,19 @@ model Token {
   userId Int
 
   @@unique([hashedToken, type])
+}
+
+model User {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  name           String?
+  email          String   @unique
+  hashedPassword String?
+  role           String   @default("USER")
+
+  tokens   Token[]
+  sessions Session[]
 }
 
 // NOTE: It's highly recommended to use an enum for the token type

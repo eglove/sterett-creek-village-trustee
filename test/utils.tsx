@@ -1,8 +1,8 @@
-import { RouterContext, BlitzRouter, BlitzProvider } from "blitz"
-import { render as defaultRender } from "@testing-library/react"
-import { renderHook as defaultRenderHook } from "@testing-library/react-hooks"
+import { render as defaultRender, RenderResult } from '@testing-library/react';
+import { renderHook as defaultRenderHook } from '@testing-library/react-hooks';
+import { BlitzProvider, BlitzRouter, RouterContext } from 'blitz';
 
-export * from "@testing-library/react"
+export * from '@testing-library/react';
 
 // --------------------------------------------------------------------------------
 // This file customizes the render() and renderHook() test functions provided
@@ -24,22 +24,26 @@ export * from "@testing-library/react"
 //   router: { pathname: '/my-custom-pathname' },
 // });
 // --------------------------------------------------
-export function render(
+export const render = (
   ui: RenderUI,
   { wrapper, router, dehydratedState, ...options }: RenderOptions = {}
-) {
+): RenderResult => {
   if (!wrapper) {
     // Add a default context wrapper if one isn't supplied from the test
-    wrapper = ({ children }: { children: React.ReactNode }) => (
-      <BlitzProvider dehydratedState={dehydratedState}>
-        <RouterContext.Provider value={{ ...mockRouter, ...router }}>
-          {children}
-        </RouterContext.Provider>
-      </BlitzProvider>
-    )
+    wrapper = ({ children }: { children: React.ReactNode }): JSX.Element => {
+      return (
+        <BlitzProvider dehydratedState={dehydratedState}>
+          {/* eslint-disable-next-line react/jsx-no-constructed-context-values */}
+          <RouterContext.Provider value={{ ...mockRouter, ...router }}>
+            {children}
+          </RouterContext.Provider>
+        </BlitzProvider>
+      );
+    };
   }
-  return defaultRender(ui, { wrapper, ...options })
-}
+
+  return defaultRender(ui, { wrapper, ...options });
+};
 
 // --------------------------------------------------
 // renderHook()
@@ -52,54 +56,62 @@ export function render(
 //   router: { pathname: '/my-custom-pathname' },
 // });
 // --------------------------------------------------
-export function renderHook(
+export const renderHook = (
   hook: RenderHook,
   { wrapper, router, dehydratedState, ...options }: RenderHookOptions = {}
-) {
+): ReturnType<typeof defaultRenderHook> => {
   if (!wrapper) {
     // Add a default context wrapper if one isn't supplied from the test
-    wrapper = ({ children }) => (
-      <BlitzProvider dehydratedState={dehydratedState}>
-        <RouterContext.Provider value={{ ...mockRouter, ...router }}>
-          {children}
-        </RouterContext.Provider>
-      </BlitzProvider>
-    )
+    // eslint-disable-next-line sonarjs/no-identical-functions
+    wrapper = ({ children }): JSX.Element => {
+      return (
+        <BlitzProvider dehydratedState={dehydratedState}>
+          {/* eslint-disable-next-line react/jsx-no-constructed-context-values */}
+          <RouterContext.Provider value={{ ...mockRouter, ...router }}>
+            {children}
+          </RouterContext.Provider>
+        </BlitzProvider>
+      );
+    };
   }
-  return defaultRenderHook(hook, { wrapper, ...options })
-}
+
+  return defaultRenderHook(hook, { wrapper, ...options });
+};
 
 export const mockRouter: BlitzRouter = {
-  basePath: "",
-  pathname: "/",
-  route: "/",
-  asPath: "/",
-  params: {},
-  query: {},
-  isReady: true,
-  isLocaleDomain: false,
-  isPreview: false,
-  push: jest.fn(),
-  replace: jest.fn(),
-  reload: jest.fn(),
+  asPath: '/',
   back: jest.fn(),
-  prefetch: jest.fn(),
+  basePath: '',
   beforePopState: jest.fn(),
   events: {
-    on: jest.fn(),
-    off: jest.fn(),
     emit: jest.fn(),
+    off: jest.fn(),
+    on: jest.fn(),
   },
   isFallback: false,
-}
+  isLocaleDomain: false,
+  isPreview: false,
+  isReady: true,
+  params: {},
+  pathname: '/',
+  prefetch: jest.fn(),
+  push: jest.fn(),
+  query: {},
+  reload: jest.fn(),
+  replace: jest.fn(),
+  route: '/',
+};
 
-type DefaultParams = Parameters<typeof defaultRender>
-type RenderUI = DefaultParams[0]
-type RenderOptions = DefaultParams[1] & { router?: Partial<BlitzRouter>; dehydratedState?: unknown }
+type DefaultParams = Parameters<typeof defaultRender>;
+type RenderUI = DefaultParams[0];
+type RenderOptions = DefaultParams[1] & {
+  dehydratedState?: unknown;
+  router?: Partial<BlitzRouter>;
+};
 
-type DefaultHookParams = Parameters<typeof defaultRenderHook>
-type RenderHook = DefaultHookParams[0]
+type DefaultHookParams = Parameters<typeof defaultRenderHook>;
+type RenderHook = DefaultHookParams[0];
 type RenderHookOptions = DefaultHookParams[1] & {
-  router?: Partial<BlitzRouter>
-  dehydratedState?: unknown
-}
+  dehydratedState?: unknown;
+  router?: Partial<BlitzRouter>;
+};

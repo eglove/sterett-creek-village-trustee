@@ -1,11 +1,11 @@
-import { Head, ErrorComponent } from "blitz"
+import { ErrorComponent, Head } from 'blitz';
 
 // ------------------------------------------------------
 // This page is rendered if a route match is not found
 // ------------------------------------------------------
-export default function Page404() {
-  const statusCode = 404
-  const title = "This page could not be found"
+const Page404 = (): JSX.Element => {
+  const statusCode = 404;
+  const title = 'This page could not be found';
   return (
     <>
       <Head>
@@ -15,5 +15,7 @@ export default function Page404() {
       </Head>
       <ErrorComponent statusCode={statusCode} title={title} />
     </>
-  )
-}
+  );
+};
+
+export default Page404;
