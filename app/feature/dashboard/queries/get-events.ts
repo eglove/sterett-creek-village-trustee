@@ -1,25 +1,12 @@
-import { Event } from '@prisma/client';
 import { resolver } from 'blitz';
 import db from 'db';
 
-import { GetEventsPaginateSchema } from '../validations';
-
-interface GetEventsProperties {
-  skip: number;
-  take: number;
-}
-
-export type GetEventsReturn = {
-  count: number;
-  events: Array<
-    Pick<Event, 'description' | 'endsAt' | 'id' | 'startsAt' | 'title'>
-  >;
-};
+import { PaginateSchema } from '../validations';
 
 export default resolver.pipe(
-  resolver.zod(GetEventsPaginateSchema),
+  resolver.zod(PaginateSchema),
   resolver.authorize(),
-  async ({ take, skip }: GetEventsProperties): Promise<GetEventsReturn> => {
+  async ({ take, skip }) => {
     const count = db.event.count();
 
     const events = db.event.findMany({

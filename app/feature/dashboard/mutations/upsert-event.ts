@@ -1,13 +1,12 @@
-import { Ctx, resolver } from 'blitz';
+import { resolver } from 'blitz';
 import db from 'db';
 
 import { UpsertEventSchema } from '../validations';
 
 export default resolver.pipe(
+  resolver.authorize(),
   resolver.zod(UpsertEventSchema),
-  async ({ description, id, endsAt, startsAt, title }, ctx: Ctx) => {
-    ctx.session.$authorize();
-
+  async ({ description, id, endsAt, startsAt, title }) => {
     if (typeof id === 'undefined') {
       return db.event.create({
         data: {

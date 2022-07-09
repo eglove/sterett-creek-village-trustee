@@ -3,17 +3,20 @@ import { useRouter } from 'blitz';
 
 import utilityStyles from '../../../styles/util.module.css';
 import { Pagination } from '../../util/pagination/components/pagination';
-import { PAGE_SIZE, useManageEvents } from '../hooks/use-manage-events';
+import { EVENTS_PAGE_SIZE, useManageEvents } from '../hooks/use-manage-events';
 import styles from '../styles/dashboard.module.css';
 
 export const ManageEvents = (): JSX.Element => {
   const router = useRouter();
 
-  const { events, count, setSkip, skip } = useManageEvents();
-
-  const handleNavigateToUpdate = async (id: string): Promise<void> => {
-    await router.push(`/dashboard/events/upsert?id=${id}`);
-  };
+  const {
+    events,
+    count,
+    setSkip,
+    skip,
+    handleDeleteEvent,
+    handleNavigateToUpsert,
+  } = useManageEvents();
 
   return (
     <div
@@ -21,14 +24,25 @@ export const ManageEvents = (): JSX.Element => {
         utilityStyles.CenterOnPage ?? ''
       }`}
     >
-      <Button
-        type="button"
-        onClick={async (): Promise<void> => {
-          await router.push('/dashboard/events/upsert');
-        }}
-      >
-        Create New Event
-      </Button>
+      <ButtonGroup>
+        <Button
+          type="button"
+          onClick={async (): Promise<void> => {
+            await handleNavigateToUpsert();
+          }}
+        >
+          Create New Event
+        </Button>
+        <Button
+          className="bg-accent-cool-dark"
+          type="button"
+          onClick={async (): Promise<void> => {
+            await router.push('/dashboard');
+          }}
+        >
+          Go Back
+        </Button>
+      </ButtonGroup>
       {events.map(event => {
         return (
           <div key={event.id}>
@@ -45,12 +59,18 @@ export const ManageEvents = (): JSX.Element => {
                 className="bg-accent-warm"
                 type="button"
                 onClick={async (): Promise<void> => {
-                  await handleNavigateToUpdate(event.id);
+                  await handleNavigateToUpsert(event.id);
                 }}
               >
                 Update
               </Button>
-              <Button className="bg-error" type="button">
+              <Button
+                className="bg-error"
+                type="button"
+                onClick={async (): Promise<void> => {
+                  await handleDeleteEvent(event.id);
+                }}
+              >
                 Delete
               </Button>
             </ButtonGroup>
@@ -59,7 +79,7 @@ export const ManageEvents = (): JSX.Element => {
         );
       })}
       <Pagination
-        pageLength={PAGE_SIZE}
+        pageLength={EVENTS_PAGE_SIZE}
         setSkip={setSkip}
         skip={skip}
         totalCount={count}

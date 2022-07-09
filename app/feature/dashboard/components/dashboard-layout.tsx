@@ -17,7 +17,14 @@ export const DashboardLayout = (): JSX.Element => {
         >
           Manage Events
         </Button>
-        <Button type="button">Manage Covenants</Button>
+        <Button
+          type="button"
+          onClick={async (): Promise<void> => {
+            await router.push('/dashboard/covenants');
+          }}
+        >
+          Manage Covenants
+        </Button>
       </ButtonGroup>
     </div>
   );

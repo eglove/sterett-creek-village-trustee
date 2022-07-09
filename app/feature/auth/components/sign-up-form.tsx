@@ -3,6 +3,7 @@ import { Button } from '@trussworks/react-uswds';
 import utilStyles from '../../../styles/util.module.css';
 import { TrussForm } from '../../trussworks/truss-form/truss-form';
 import { TrussTextInput } from '../../trussworks/truss-form/truss-text-input';
+import { TrussLink } from '../../trussworks/truss-link/truss-link';
 import { useSignUpForm } from '../hooks/use-sign-up-form';
 
 interface SignUpFormProperties {
@@ -19,7 +20,12 @@ export const SignUpForm = ({
 
   return (
     <div className={utilStyles.CenterOnPage}>
-      <TrussForm errorMessage={formError} onSubmit={handleSubmit}>
+      <TrussForm
+        errorMessage={formError}
+        legend="Sign up"
+        onSubmit={handleSubmit}
+      >
+        <TrussLink href="/sign-in">or sign in</TrussLink>
         <TrussTextInput
           required
           errorMessages={fieldErrors?.email}

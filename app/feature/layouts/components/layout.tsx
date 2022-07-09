@@ -35,7 +35,7 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
     <TrussLink href="/calendar" key="calendar">
       Calendar
     </TrussLink>,
-    <TrussLink href="/" key="covenants">
+    <TrussLink href="/covenants" key="covenants">
       Covenants
     </TrussLink>,
   ];

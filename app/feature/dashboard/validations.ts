@@ -1,7 +1,11 @@
 import { z } from 'zod';
 
-export const GetEventSchema = z.object({
-  id: z.string().optional(),
+export const IdSchema = z.object({
+  id: z.string(),
+});
+
+export const OptionalIdSchema = z.object({
+  id: z.string().uuid().optional(),
 });
 
 export const GetEventsSchema = z
@@ -19,16 +23,29 @@ export const GetEventsSchema = z
     }
   );
 
-export const GetEventsPaginateSchema = z.object({
+export const PaginateSchema = z.object({
   skip: z.number(),
   take: z.number(),
+});
+
+export const UpdateCovenantTitle = z.object({
+  id: z.string().uuid(),
+  title: z.string(),
+});
+
+export const UploadCovenant = z.object({
+  cloudinaryId: z.string(),
+  height: z.number(),
+  title: z.string(),
+  url: z.string().url(),
+  width: z.number(),
 });
 
 export const UpsertEventSchema = z
   .object({
     description: z.string(),
     endsAt: z.date(),
-    id: z.string().optional(),
+    id: z.string().uuid().optional(),
     startsAt: z.date(),
     title: z.string(),
   })

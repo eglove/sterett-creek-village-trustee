@@ -4,19 +4,16 @@ import db from 'db';
 import { OptionalIdSchema } from '../validations';
 
 export default resolver.pipe(
-  resolver.zod(OptionalIdSchema),
   resolver.authorize(),
+  resolver.zod(OptionalIdSchema),
   async ({ id }) => {
     if (typeof id === 'undefined') {
       return null;
     }
 
-    return db.event.findUnique({
+    return db.covenant.findUnique({
       select: {
-        description: true,
-        endsAt: true,
         id: true,
-        startsAt: true,
         title: true,
       },
       where: {

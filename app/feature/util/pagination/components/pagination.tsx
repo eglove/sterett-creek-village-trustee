@@ -41,7 +41,8 @@ export const Pagination = ({
       </Button>
       <div>
         Page: {skip / pageLength + 1} of{' '}
-        {Number.isNaN(Math.ceil(totalCount / pageLength))
+        {Number.isNaN(Math.ceil(totalCount / pageLength)) ||
+        Math.ceil(totalCount / pageLength) === 0
           ? 1
           : Math.ceil(totalCount / pageLength)}{' '}
       </div>
