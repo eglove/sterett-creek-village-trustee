@@ -9,7 +9,10 @@ export const authenticateUser = async (
   rawEmail: string,
   rawPassword: string
 ): Promise<Pick<User, 'id' | 'role'>> => {
-  const { email, password } = SignInSchema.parse({ rawEmail, rawPassword });
+  const { email, password } = SignInSchema.parse({
+    email: rawEmail,
+    password: rawPassword,
+  });
 
   const user = await db.user.findFirst({ where: { email } });
 

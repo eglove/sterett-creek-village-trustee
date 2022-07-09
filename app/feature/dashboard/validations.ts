@@ -1,5 +1,10 @@
 import { z } from 'zod';
 
+export const GetEventsSchema = z.object({
+  from: z.date(),
+  to: z.date(),
+});
+
 export const CreateEventSchema = z
   .object({
     description: z.string(),

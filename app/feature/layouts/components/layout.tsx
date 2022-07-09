@@ -4,9 +4,11 @@ import {
   NavMenuButton,
   Title,
 } from '@trussworks/react-uswds';
-import { BlitzLayout, Head } from 'blitz';
+import { BlitzLayout, Head, useMutation } from 'blitz';
 import { useState } from 'react';
 
+import { useCurrentUser } from '../../auth/hooks/use-current-user';
+import signOut from '../../auth/mutations/sign-out';
 import { TrussLink } from '../../trussworks/truss-link/truss-link';
 import styles from '../styles/layout.module.css';
 
@@ -14,7 +16,14 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
   title,
   children,
 }) => {
+  const user = useCurrentUser();
   const [expanded, setExpanded] = useState(false);
+
+  const [signOutMutation] = useMutation(signOut);
+
+  const handleSignOut = async (): Promise<void> => {
+    await signOutMutation(undefined);
+  };
 
   const toggleExpanded = (): void => {
     setExpanded(expanded_ => {
@@ -37,6 +46,23 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
     </TrussLink>,
   ];
 
+  const SecondaryItems = [
+    <TrussLink href="/dashboard" key="dashboard">
+      Dashboard
+    </TrussLink>,
+    <span
+      className="usa-link"
+      key="signOut"
+      role="link"
+      style={{ cursor: 'pointer' }}
+      tabIndex={0}
+      onClick={handleSignOut}
+      onKeyUp={handleSignOut}
+    >
+      Sign Out
+    </span>,
+  ];
+
   return (
     <>
       <div className={`usa-overlay ${expanded ? 'is-visible' : ''}`} />
@@ -54,7 +80,7 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
         <ExtendedNav
           mobileExpanded={expanded}
           primaryItems={NavigationItems}
-          secondaryItems={[]}
+          secondaryItems={typeof user === 'undefined' ? [] : SecondaryItems}
           onToggleMobileNav={toggleExpanded}
         />
       </Header>

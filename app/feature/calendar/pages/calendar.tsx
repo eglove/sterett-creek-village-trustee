@@ -1,10 +1,15 @@
 import { BlitzPage } from 'blitz';
+import { Suspense } from 'react';
 
 import Layout from '../../layouts/components/layout';
 import { CalendarLayout } from '../components/calendar-layout';
 
 const Calendar: BlitzPage = () => {
-  return <CalendarLayout />;
+  return (
+    <Suspense>
+      <CalendarLayout />
+    </Suspense>
+  );
 };
 
 Calendar.suppressFirstRenderFlicker = true;
