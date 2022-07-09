@@ -36,7 +36,5 @@ S
 #app/feature/dashboard/contstants.ts,1\a\1ae072a19ac3d3e110ae30c6bfd3b491c7791840
 ;
 db/index.ts,e\1\e116701f1559bfe011f82630190b80e3ddd5fc50
-@
-db/schema.prisma,4\4\443e0b02e5d488eaf53c7e4f433b7b177c334813
 a
 1app/feature/dashboard/styles/dashboard.module.css,a\a\aa74457ee92f6814744ed057eff5ba5379277e10
