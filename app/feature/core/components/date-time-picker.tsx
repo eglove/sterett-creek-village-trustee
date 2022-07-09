@@ -1,3 +1,6 @@
+// onChange here isn't typing correctly
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { ErrorMessage, FormGroup, Label } from '@trussworks/react-uswds';
 import { DatePickerProps } from '@trussworks/react-uswds/lib/components/forms/DatePicker/DatePicker';
 import { ChangeEventHandler } from 'react';

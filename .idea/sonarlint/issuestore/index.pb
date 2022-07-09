@@ -27,3 +27,13 @@ J
 db/schema.prisma,4\4\443e0b02e5d488eaf53c7e4f433b7b177c334813
 h
 8app/feature/util/pagination/styles/pagination.module.css,5\2\525084c87efe857d7cb25cfbf6a9cd9f6028f64b
+g
+7app/feature/dashboard/pages/dashboard/events/upsert.tsx,1\e\1e9f89cd5242cd565885c5819e61b35e76bc3793
+f
+6app/feature/trussworks/truss-form/truss-text-input.tsx,0\7\07bd0e0ae0acd4b55752a67a5eb6b1310202eac8
+g
+7app/feature/trussworks/truss-form/truss-date-picker.tsx,4\0\40616950a1448eb55f8782682b78a2fa2eba8e4e
+]
+-app/feature/auth/mutations/change-password.ts,4\8\484325a02b4a2ce3054be6109e9d6dda07bef7c2
+`
+0app/feature/dashboard/hooks/use-manage-events.ts,2\a\2a22bf1bbcc46f247715a98b5aa782b098108519
