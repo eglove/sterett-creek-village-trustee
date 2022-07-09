@@ -1,10 +1,15 @@
 import { BlitzPage } from 'blitz';
+import { Suspense } from 'react';
 
 import Layout from '../../../../layouts/components/layout';
 import { ManageEvents } from '../../../components/manage-events';
 
 const Events: BlitzPage = () => {
-  return <ManageEvents />;
+  return (
+    <Suspense>
+      <ManageEvents />
+    </Suspense>
+  );
 };
 
 Events.suppressFirstRenderFlicker = true;

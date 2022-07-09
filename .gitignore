@@ -1,3 +1,5 @@
+.idea/sonarlint
+
 # dependencies
 node_modules
 .yarn/*

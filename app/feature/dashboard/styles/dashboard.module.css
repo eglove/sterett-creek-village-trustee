@@ -1,4 +1,31 @@
+.EventContainer {
+  max-width: 80%;
+  margin: auto;
+}
+
 .DateTime {
   display: grid;
   grid-template-columns: 2fr 1fr;
 }
+
+.EventTimes {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.PaginationDisplay {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.PaginationButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 8px;
+}
+
+
+

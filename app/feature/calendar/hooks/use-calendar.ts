@@ -90,7 +90,9 @@ export const useCalendar = (): UseCalendarReturn => {
     });
 
     // React big calendar throws an error if you set state inside of range change
-    // So instead of setting the range with useState, we have to do this
+    // So instead of creating useState variables for end and start, then resetting them onChange, and calling a QUERY
+    // we have to call a MUTATION on initial load, and then on every change after
+    // This is not a proper use of useEffect, but we need to make a call for initial data
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

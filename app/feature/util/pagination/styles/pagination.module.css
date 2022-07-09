@@ -1,0 +1,13 @@
+.PaginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.PaginationContainer button {
+  display: grid;
+  grid-template-columns: auto auto;
+  place-items: center;
+  margin: 0;
+}

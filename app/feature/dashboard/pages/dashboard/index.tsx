@@ -1,10 +1,15 @@
 import { BlitzPage } from 'blitz';
+import { Suspense } from 'react';
 
 import Layout from '../../../layouts/components/layout';
 import { DashboardLayout } from '../../components/dashboard-layout';
 
 const Dashboard: BlitzPage = () => {
-  return <DashboardLayout />;
+  return (
+    <Suspense>
+      <DashboardLayout />
+    </Suspense>
+  );
 };
 
 Dashboard.suppressFirstRenderFlicker = true;

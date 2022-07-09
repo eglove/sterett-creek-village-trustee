@@ -1,19 +1,10 @@
 import Layout from 'app/feature/layouts/components/layout';
-import { BlitzPage, Image } from 'blitz';
+import { BlitzPage } from 'blitz';
 
-import utilStyles from '../styles/util.module.css';
+import { CalendarLayout } from '../feature/calendar/components/calendar-layout';
 
 const Home: BlitzPage = () => {
-  return (
-    <div className={utilStyles.CenterOnPage}>
-      <Image
-        alt="Sterett Creek"
-        height={218}
-        src="/images/sterett-creek.webp"
-        width={970}
-      />
-    </div>
-  );
+  return <CalendarLayout />;
 };
 
 Home.suppressFirstRenderFlicker = true;
