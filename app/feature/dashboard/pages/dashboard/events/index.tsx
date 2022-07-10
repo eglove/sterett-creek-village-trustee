@@ -2,7 +2,7 @@ import { BlitzPage } from 'blitz';
 import { Suspense } from 'react';
 
 import Layout from '../../../../layouts/components/layout';
-import { ManageEvents } from '../../../components/manage-events';
+import { ManageEvents } from '../../../components/events/manage-events';
 
 const Events: BlitzPage = () => {
   return (

@@ -8,14 +8,23 @@ export const DashboardLayout = (): JSX.Element => {
 
   return (
     <div className={utilityStyles.CenterOnPage}>
+      <h2>Admin Dashboard</h2>
       <ButtonGroup>
+        <Button
+          type="button"
+          onClick={async (): Promise<void> => {
+            await router.push('/dashboard/styles-images');
+          }}
+        >
+          Home Images
+        </Button>
         <Button
           type="button"
           onClick={async (): Promise<void> => {
             await router.push('/dashboard/events');
           }}
         >
-          Manage Events
+          Events
         </Button>
         <Button
           type="button"
@@ -23,7 +32,7 @@ export const DashboardLayout = (): JSX.Element => {
             await router.push('/dashboard/covenants');
           }}
         >
-          Manage Covenants
+          Covenants
         </Button>
       </ButtonGroup>
     </div>

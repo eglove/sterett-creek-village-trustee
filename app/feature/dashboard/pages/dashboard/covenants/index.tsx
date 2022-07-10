@@ -2,7 +2,7 @@ import { BlitzPage } from 'blitz';
 import { Suspense } from 'react';
 
 import Layout from '../../../../layouts/components/layout';
-import { ManageCovenants } from '../../../components/manage-covenants';
+import { ManageCovenants } from '../../../components/covenants/manage-covenants';
 
 const CovenantsDashboard: BlitzPage = () => {
   return (

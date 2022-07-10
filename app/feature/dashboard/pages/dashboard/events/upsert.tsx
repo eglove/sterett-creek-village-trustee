@@ -2,7 +2,7 @@ import { useRouter } from 'blitz';
 import { Suspense } from 'react';
 
 import Layout from '../../../../layouts/components/layout';
-import { UpsertEventForm } from '../../../components/upsert-event-form';
+import { UpsertEventForm } from '../../../components/events/upsert-event-form';
 
 const CreateEvent = (): JSX.Element => {
   const router = useRouter();

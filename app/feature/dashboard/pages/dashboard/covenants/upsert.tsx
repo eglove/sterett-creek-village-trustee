@@ -2,7 +2,7 @@ import { useRouter } from 'blitz';
 import { Suspense } from 'react';
 
 import Layout from '../../../../layouts/components/layout';
-import { UpsertCovenantForm } from '../../../components/upsert-covenant-form';
+import { UpsertCovenantForm } from '../../../components/covenants/upsert-covenant-form';
 
 const UpsertCovenant = (): JSX.Element => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const UpsertCovenant = (): JSX.Element => {
 UpsertCovenant.suppressFirstRenderFlicker = true;
 UpsertCovenant.authenticate = { redirectTo: '/sign-in' };
 UpsertCovenant.getLayout = (page: JSX.Element): JSX.Element => {
-  return <Layout title="Create Covenant">{page}</Layout>;
+  return <Layout title="Manage Covenant">{page}</Layout>;
 };
 
 export default UpsertCovenant;

@@ -32,6 +32,9 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
   };
 
   const NavigationItems = [
+    <TrussLink href="/" key="home">
+      Home
+    </TrussLink>,
     <TrussLink href="/calendar" key="calendar">
       Calendar
     </TrussLink>,
@@ -67,9 +70,7 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
       <Header extended className={styles.Navigation}>
         <div className="usa-navbar">
           <Title className={styles.Title}>
-            <TrussLink href="/calendar">
-              Sterett Creek Village Trustee
-            </TrussLink>
+            <TrussLink href="/">Sterett Creek Village Trustee</TrussLink>
           </Title>
           <NavMenuButton label="Menu" onClick={toggleExpanded} />
         </div>

@@ -1,0 +1,20 @@
+.HomeLayout {
+  max-width: 1500px;
+  margin: auto;
+}
+
+.Masonry {
+  display: flex;
+  margin-left: -30px;
+  width: auto;
+}
+
+.MasonryColumn {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+.MasonryColumn > div {
+  background: grey;
+  margin-bottom: 30px;
+}

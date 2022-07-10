@@ -1,7 +1,7 @@
 import { resolver } from 'blitz';
 import db from 'db';
 
-import { GetEventsSchema } from '../../dashboard/validations';
+import { GetEventsSchema } from '../../dashboard/validations/events/event-validations';
 
 export default resolver.pipe(
   resolver.zod(GetEventsSchema),

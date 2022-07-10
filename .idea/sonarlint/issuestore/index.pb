@@ -2,10 +2,6 @@
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-_
-/app/feature/dashboard/pages/dashboard/index.tsx,5\b\5b18920f293fa5e8a1382f363685519764d8b436
-J
-app/styles/util.module.css,a\f\af26f17104c6cd3715f7c03deb1075a62ca7a6c7
 h
 8app/feature/util/pagination/styles/pagination.module.css,5\2\525084c87efe857d7cb25cfbf6a9cd9f6028f64b
 g
@@ -18,11 +14,25 @@ N
 app/feature/dashboard/types.ts,d\5\d599cb478b73a6d695fd8abf7f7351d444cd2c20
 f
 6app/feature/trussworks/truss-form/truss-file-input.tsx,2\d\2d6121520fbd59bd16388b5da8ed2f47ea4fc0a4
-C
-app/pages/index.tsx,d\e\def93120bfb23c22f88fb7cefb9314e0d828a800
 f
 6app/feature/trussworks/truss-form/truss-text-input.tsx,0\7\07bd0e0ae0acd4b55752a67a5eb6b1310202eac8
 f
 6app/feature/dashboard/pages/dashboard/events/index.tsx,1\2\12de4b2a2c1459d3f254289a2a22305d412f798f
-S
-#app/feature/dashboard/contstants.ts,1\a\1ae072a19ac3d3e110ae30c6bfd3b491c7791840
+R
+"app/feature/auth/pages/sign-in.tsx,d\9\d981e6488fcb6fd98cfc1056fe3436cd5e5f5d57
+;
+render.yaml,1\b\1b8a9c728ebe242b14ab7e5c41c6324017da50ee
+6
+.npmrc,1\2\12453d06e6e35287172e482940b954ba12dc25a2
+\
+,app/feature/auth/queries/get-current-user.ts,3\1\31acf981818fc4b055ad09972bd3582d6c81cb96
+Z
+*app/feature/auth/hooks/use-current-user.ts,0\e\0eec55bb40841666ea9bfe9ef49414b546ab5a0b
+4
+.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
+i
+9app/feature/dashboard/components/events/manage-events.tsx,f\3\f3411ed3387c99abb5302dc9956d159d2bb757e7
+Z
+*app/feature/calendar/hooks/use-calendar.ts,7\3\73a37ccfe4fc99417cd9454ad739f157c4482524
+m
+=app/feature/dashboard/validations/events/event-validations.ts,5\e\5ee9ba878bfdfaafa8882c5de35cd503c93af412
