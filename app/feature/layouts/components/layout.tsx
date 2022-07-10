@@ -76,7 +76,9 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
         <ExtendedNav
           mobileExpanded={expanded}
           primaryItems={NavigationItems}
-          secondaryItems={typeof user === 'undefined' ? [] : SecondaryItems}
+          secondaryItems={
+            user === null || typeof user === 'undefined' ? [] : SecondaryItems
+          }
           onToggleMobileNav={toggleExpanded}
         />
       </Header>

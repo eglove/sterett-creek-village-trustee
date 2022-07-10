@@ -17,7 +17,7 @@ export const authenticateUser = async (
   const user = await db.user.findFirst({ where: { email } });
 
   if (user === null) {
-    throw new AuthenticationError();
+    throw new AuthenticationError('Credentials not found.');
   }
 
   const result = await SecurePassword.verify(user.hashedPassword, password);
