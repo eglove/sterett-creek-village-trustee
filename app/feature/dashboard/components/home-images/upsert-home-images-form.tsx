@@ -35,6 +35,7 @@ export const UpsertHomeImagesForm = ({
         onSubmit={handleSubmit}
       >
         <TrussTextInput
+          required
           errorMessages={fieldErrors?.description}
           label="Description"
           name="description"
@@ -43,6 +44,7 @@ export const UpsertHomeImagesForm = ({
         />
         {typeof homeImageId === 'undefined' && (
           <TrussFileInput
+            required
             errorMessages={fieldErrors?.file}
             label="File"
             name="file"

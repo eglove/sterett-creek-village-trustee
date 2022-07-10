@@ -45,12 +45,14 @@ export const UpsertEventForm = (
         />
         <div className={styles.DateTime}>
           <DateTimePicker
+            required
             label="Start Time"
             name="startsAt"
             value={formState.startsAt}
             onChange={handleInputChange}
           />
           <DateTimePicker
+            required
             label="End Time"
             name="endsAt"
             value={formState.endsAt}

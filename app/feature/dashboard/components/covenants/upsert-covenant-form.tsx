@@ -37,6 +37,7 @@ export const UpsertCovenantForm = (
         onSubmit={handleSubmit}
       >
         <TrussTextInput
+          required
           errorMessages={fieldErrors?.title}
           label="Title"
           name="title"
@@ -45,6 +46,7 @@ export const UpsertCovenantForm = (
         />
         {typeof updateProperties.covenantId === 'undefined' && (
           <TrussFileInput
+            required
             errorMessages={fieldErrors?.file}
             label="File"
             name="file"

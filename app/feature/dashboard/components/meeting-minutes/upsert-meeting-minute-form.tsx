@@ -35,6 +35,7 @@ export const UpsertMeetingMinuteForm = ({
         onSubmit={handleSubmit}
       >
         <TrussTextInput
+          required
           errorMessages={fieldErrors?.title}
           label="Title"
           name="title"
@@ -43,6 +44,7 @@ export const UpsertMeetingMinuteForm = ({
         />
         {typeof meetingMinuteId === 'undefined' && (
           <TrussFileInput
+            required
             errorMessages={fieldErrors?.file}
             label="File"
             name="file"
