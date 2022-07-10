@@ -1,3 +1,4 @@
+import '../styles/nprogress.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import '@trussworks/react-uswds/lib/index.css';
 import '../styles/global.css';
@@ -11,8 +12,20 @@ import {
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
 } from 'blitz';
+import { Router } from 'next/router';
+import NProgress from 'nprogress';
 
 import { SignInForm } from '../feature/auth/components/sign-in-form';
+
+Router.events.on('routeChangeStart', () => {
+  return NProgress.start();
+});
+Router.events.on('routeChangeComplete', () => {
+  return NProgress.done();
+});
+Router.events.on('routeChangeError', () => {
+  return NProgress.done();
+});
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   const getLayout =

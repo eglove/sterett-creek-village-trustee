@@ -10,6 +10,14 @@ import styles from '../styles/covenants.module.css';
 export const CovenantsLayout = (): JSX.Element => {
   const { covenants, skip, setSkip, count } = useCovenantsLayout();
 
+  if (count === 0) {
+    return (
+      <div className={utilityStyles.CenterOnPage}>
+        There&apos;s nothing here yet. Check back later.
+      </div>
+    );
+  }
+
   return (
     <div className={utilityStyles.CenterOnPage}>
       <div className={styles.CovenantLinkContainer}>
