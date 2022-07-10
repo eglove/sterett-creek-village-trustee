@@ -1,9 +1,9 @@
-import { BlitzPage, useRouter } from 'blitz';
+import { useRouter } from 'blitz';
 
 import Layout from '../../layouts/components/layout';
 import { SignUpForm } from '../components/sign-up-form';
 
-const SignUp: BlitzPage = () => {
+const SignUp = (): JSX.Element => {
   const router = useRouter();
 
   return (

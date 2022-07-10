@@ -1,9 +1,9 @@
-import { BlitzPage, useRouter } from 'blitz';
+import { useRouter } from 'blitz';
 
 import Layout from '../../layouts/components/layout';
 import { SignInForm } from '../components/sign-in-form';
 
-const SignIn: BlitzPage = () => {
+const SignIn = (): JSX.Element => {
   const router = useRouter();
 
   const handlePostRedirect = async (): Promise<void> => {

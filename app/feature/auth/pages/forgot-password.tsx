@@ -1,9 +1,7 @@
-import { BlitzPage } from 'blitz';
-
 import Layout from '../../layouts/components/layout';
 import { ForgotPasswordForm } from '../components/forgot-password-form';
 
-const ForgotPassword: BlitzPage = () => {
+const ForgotPassword = (): JSX.Element => {
   return <ForgotPasswordForm />;
 };
 

@@ -1,10 +1,10 @@
-import { BlitzPage, useRouter } from 'blitz';
+import { useRouter } from 'blitz';
 import { Suspense } from 'react';
 
 import Layout from '../../../../layouts/components/layout';
 import { UpsertCovenantForm } from '../../../components/upsert-covenant-form';
 
-const UpsertCovenant: BlitzPage = () => {
+const UpsertCovenant = (): JSX.Element => {
   const router = useRouter();
   const { id } = router.query;
 
