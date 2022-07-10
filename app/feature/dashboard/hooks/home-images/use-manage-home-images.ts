@@ -30,7 +30,7 @@ export const useManageHomeImages = (): UseManageHomeImages => {
 
   const handleNavigateToUpsert = async (id?: string): Promise<void> => {
     if (typeof id === 'undefined') {
-      await router.push('/dashboard/styles-images/upsert');
+      await router.push('/dashboard/home-images/upsert');
     } else {
       await router.push(`/dashboard/home-images/upsert?id=${id}`);
     }

@@ -85,7 +85,7 @@ export const useUpsertHomeImages = ({
 
       clearFieldErrors();
       setFormError(undefined);
-      await router.push('/dashboard/styles-images');
+      await router.push('/dashboard/home-images');
     } catch (error: unknown) {
       if (error instanceof ZodError) {
         setFieldErrors(getZodFieldErrors(error, formState));

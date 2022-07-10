@@ -13,7 +13,7 @@ export const DashboardLayout = (): JSX.Element => {
         <Button
           type="button"
           onClick={async (): Promise<void> => {
-            await router.push('/dashboard/styles-images');
+            await router.push('/dashboard/home-images');
           }}
         >
           Home Images

@@ -50,7 +50,7 @@ export const UpsertHomeImagesForm = ({
             className="bg-accent-cool-dark"
             type="button"
             onClick={async (): Promise<void> => {
-              await router.push('/dashboard/styles-images');
+              await router.push('/dashboard/home-images');
             }}
           >
             Go Back

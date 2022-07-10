@@ -5,8 +5,8 @@ export const CLOUDINARY_PRESET = {
       : 'sterett-covenants',
   HOME_IMAGE:
     process.env.NODE_ENV === 'development'
-      ? 'sterett-styles-images-test'
-      : 'sterett-styles-images',
+      ? 'sterett-home-images-test'
+      : 'sterett-home-images',
 };
 
 export const CLOUDINARY_URL = {
