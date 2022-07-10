@@ -129,8 +129,12 @@ export const useCalendar = (): UseCalendarReturn => {
   }, []);
 
   useEffect(() => {
+    let lastMove = 0;
     addEventListener('resize', () => {
-      handleViewChange();
+      if (Date.now() - lastMove > 300) {
+        lastMove = Date.now();
+        handleViewChange();
+      }
     });
 
     return (): void => {
@@ -138,7 +142,12 @@ export const useCalendar = (): UseCalendarReturn => {
         handleViewChange();
       });
     };
-  }, [handleViewChange]);
+
+    // If this runs on every render, it will update too often if resize updates often
+    // Causing state to fall behind and visual lag
+    // This event listener MUST only be set once AND be able to update the Calendar component props
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     handleViewChange();
