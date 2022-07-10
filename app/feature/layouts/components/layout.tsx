@@ -4,11 +4,11 @@ import {
   NavMenuButton,
   Title,
 } from '@trussworks/react-uswds';
-import { BlitzLayout, Head, useMutation } from 'blitz';
+import { BlitzLayout, Head, useMutation, useQuery } from 'blitz';
 import { useState } from 'react';
 
-import { useCurrentUser } from '../../auth/hooks/use-current-user';
 import signOut from '../../auth/mutations/sign-out';
+import getCurrentUser from '../../auth/queries/get-current-user';
 import { TrussLink } from '../../trussworks/truss-link/truss-link';
 import styles from '../styles/layout.module.css';
 
@@ -16,7 +16,7 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
   title,
   children,
 }) => {
-  const user = useCurrentUser();
+  const [user] = useQuery(getCurrentUser, undefined, { suspense: false });
   const [expanded, setExpanded] = useState(false);
 
   const [signOutMutation] = useMutation(signOut);
