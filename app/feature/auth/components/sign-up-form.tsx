@@ -31,6 +31,7 @@ export const SignUpForm = ({
           errorMessages={fieldErrors?.email}
           label="Email"
           name="email"
+          type="email"
           value={formState.email}
           onChange={handleInputChange}
         />

@@ -27,7 +27,13 @@ export const HomeLayout = (): JSX.Element => {
       >
         {images.map(image => {
           return (
-            <div className={styles.MasonryColumn} key={image.id}>
+            <div
+              className={styles.MasonryColumn}
+              key={image.id}
+              style={{
+                contentVisibility: 'auto',
+              }}
+            >
               <Image
                 alt={image.description}
                 height={image.height}

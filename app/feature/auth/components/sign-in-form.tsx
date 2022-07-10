@@ -27,6 +27,7 @@ export const SignInForm = (parameters: SignInFormProperties): JSX.Element => {
           errorMessages={fieldErrors?.email}
           label="Email"
           name="email"
+          type="email"
           value={formState.email}
           onChange={handleInputChange}
         />
@@ -40,6 +41,9 @@ export const SignInForm = (parameters: SignInFormProperties): JSX.Element => {
           onChange={handleInputChange}
         />
         <Button type="submit">Sign In</Button>
+        <p>
+          <TrussLink href="/forgot-password">Forgot Password?</TrussLink>
+        </p>
       </TrussForm>
     </div>
   );
