@@ -13,6 +13,7 @@ export const ResetPasswordForm = (): JSX.Element => {
     fieldErrors,
     handleInputChange,
     handleSubmit,
+    isLoading,
     isSuccess,
   } = useResetPasswordForm();
 
@@ -30,6 +31,7 @@ export const ResetPasswordForm = (): JSX.Element => {
   return (
     <div className={utilityStyles.CenterOnPage}>
       <TrussForm
+        disabled={isLoading}
         errorMessage={formError}
         legend="Reset Password"
         onSubmit={handleSubmit}

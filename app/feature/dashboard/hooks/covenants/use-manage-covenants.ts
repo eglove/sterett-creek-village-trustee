@@ -3,14 +3,15 @@ import { useMutation, useQuery, useRouter } from 'blitz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import getCovenants from '../../../../queries/get-covenants';
+import { IdSchema } from '../../../../validations';
 import deleteCovenant from '../../mutations/covenants/delete-covenant';
-import { IdSchema } from '../../validations/validations';
 
 type UseManageCovenantsReturn = {
   count: number;
   covenants: Array<Pick<Covenant, 'id' | 'title' | 'url'>>;
   handleDeleteCovenant: (id: string) => Promise<void>;
   handleNavigateToUpsert: (id?: string) => Promise<void>;
+  isLoading: boolean;
   setSkip: Dispatch<SetStateAction<number>>;
   skip: number;
 };
@@ -26,7 +27,7 @@ export const useManageCovenants = (): UseManageCovenantsReturn => {
     take: COVENANTS_DASHBOARD_PAGE_SIZE,
   });
 
-  const [deleteCovenantMutation] = useMutation(deleteCovenant);
+  const [deleteCovenantMutation, { isLoading }] = useMutation(deleteCovenant);
 
   const handleNavigateToUpsert = async (id?: string): Promise<void> => {
     if (typeof id === 'undefined') {
@@ -47,6 +48,7 @@ export const useManageCovenants = (): UseManageCovenantsReturn => {
     covenants: data.covenants,
     handleDeleteCovenant,
     handleNavigateToUpsert,
+    isLoading,
     setSkip,
     skip,
   };

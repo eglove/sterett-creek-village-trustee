@@ -34,6 +34,14 @@ export const DashboardLayout = (): JSX.Element => {
         >
           Covenants
         </Button>
+        <Button
+          type="button"
+          onClick={async (): Promise<void> => {
+            await router.push('/dashboard/meeting-minutes');
+          }}
+        >
+          Meeting Minutes
+        </Button>
       </ButtonGroup>
     </div>
   );

@@ -1,7 +1,7 @@
 import { resolver } from 'blitz';
 import db from 'db';
 
-import { IdSchema } from '../../validations/validations';
+import { IdSchema } from '../../../../validations';
 
 export default resolver.pipe(
   resolver.authorize(),

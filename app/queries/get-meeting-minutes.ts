@@ -6,28 +6,26 @@ import { PaginateSchema } from '../validations';
 export default resolver.pipe(
   resolver.zod(PaginateSchema),
   async ({ take, skip }) => {
-    const count = db.homeImage.count();
+    const count = db.meetingMinute.count();
 
-    const homeImages = db.homeImage.findMany({
+    const meetingMinutes = db.meetingMinute.findMany({
       orderBy: {
         updatedAt: 'desc',
       },
       select: {
-        description: true,
-        height: true,
         id: true,
+        title: true,
         url: true,
-        width: true,
       },
       skip,
       take,
     });
 
-    const resolved = await Promise.all([count, homeImages]);
+    const resolved = await Promise.all([count, meetingMinutes]);
 
     return {
       count: resolved[0],
-      homeImages: resolved[1],
+      meetingMinutes: resolved[1],
     };
   }
 );

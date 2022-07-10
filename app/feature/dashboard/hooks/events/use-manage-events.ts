@@ -2,9 +2,9 @@ import { Event } from '@prisma/client';
 import { useMutation, useQuery, useRouter } from 'blitz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
+import { IdSchema } from '../../../../validations';
 import deleteEvent from '../../mutations/events/delete-event';
 import getEvents from '../../queries/events/get-events';
-import { IdSchema } from '../../validations/validations';
 
 type UseManageEventsReturn = {
   count: number;

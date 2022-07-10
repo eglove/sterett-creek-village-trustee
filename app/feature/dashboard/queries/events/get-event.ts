@@ -1,7 +1,7 @@
 import { resolver } from 'blitz';
 import db from 'db';
 
-import { OptionalIdSchema } from '../../validations/validations';
+import { OptionalIdSchema } from '../../../../validations';
 
 export default resolver.pipe(
   resolver.zod(OptionalIdSchema),

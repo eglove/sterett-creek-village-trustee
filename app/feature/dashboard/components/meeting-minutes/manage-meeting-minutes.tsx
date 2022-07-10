@@ -6,23 +6,23 @@ import coreStyles from '../../../core/styles/styles.module.css';
 import { TrussLink } from '../../../trussworks/truss-link/truss-link';
 import { Pagination } from '../../../util/pagination/components/pagination';
 import {
-  COVENANTS_DASHBOARD_PAGE_SIZE,
-  useManageCovenants,
-} from '../../hooks/covenants/use-manage-covenants';
+  MEETING_MINUTES_DASHBOARD_PAGE_SIZE,
+  useManageMeetingMinutes,
+} from '../../hooks/meeting-minutes/use-manage-meeting-minutes';
 import styles from '../../styles/dashboard.module.css';
 
-export const ManageCovenants = (): JSX.Element => {
+export const ManageMeetingMinutes = (): JSX.Element => {
   const router = useRouter();
 
   const {
-    handleDeleteCovenant,
+    handleDeleteMeetingMinute,
     handleNavigateToUpsert,
     isLoading,
-    covenants,
-    skip,
+    meetingMinutes,
     setSkip,
+    skip,
     count,
-  } = useManageCovenants();
+  } = useManageMeetingMinutes();
 
   return (
     <div className={utilityStyles.CenterOnPage}>
@@ -33,7 +33,7 @@ export const ManageCovenants = (): JSX.Element => {
             await handleNavigateToUpsert();
           }}
         >
-          Add New Covenant
+          Add New Meeting Minutes
         </Button>
         <Button
           className="bg-accent-cool-dark"
@@ -46,18 +46,21 @@ export const ManageCovenants = (): JSX.Element => {
         </Button>
       </ButtonGroup>
       <div className={coreStyles.FileLinkContainer}>
-        {covenants.map(covenant => {
+        {meetingMinutes.map(meetingMinute => {
           return (
-            <div className={styles.DashboardFileLinkActions} key={covenant.id}>
-              <TrussLink newTab href={covenant.url}>
-                {covenant.title}
+            <div
+              className={styles.DashboardFileLinkActions}
+              key={meetingMinute.id}
+            >
+              <TrussLink newTab href={meetingMinute.url}>
+                {meetingMinute.title}
               </TrussLink>
               <ButtonGroup>
                 <Button
                   className="bg-accent-warm"
                   type="button"
                   onClick={async (): Promise<void> => {
-                    await handleNavigateToUpsert(covenant.id);
+                    await handleNavigateToUpsert(meetingMinute.id);
                   }}
                 >
                   Update
@@ -67,7 +70,7 @@ export const ManageCovenants = (): JSX.Element => {
                   disabled={isLoading}
                   type="button"
                   onClick={async (): Promise<void> => {
-                    await handleDeleteCovenant(covenant.id);
+                    await handleDeleteMeetingMinute(meetingMinute.id);
                   }}
                 >
                   Delete
@@ -78,7 +81,7 @@ export const ManageCovenants = (): JSX.Element => {
         })}
       </div>
       <Pagination
-        pageLength={COVENANTS_DASHBOARD_PAGE_SIZE}
+        pageLength={MEETING_MINUTES_DASHBOARD_PAGE_SIZE}
         setSkip={setSkip}
         skip={skip}
         totalCount={count}

@@ -35,6 +35,7 @@ export type UseUpsertHomeImagesReturn = {
   formState: InitialState;
   handleInputChange: (event: ChangeEvent) => void;
   handleSubmit: (event: FormEvent) => void;
+  isLoading: boolean;
 };
 
 export const useUpsertHomeImages = ({
@@ -43,10 +44,10 @@ export const useUpsertHomeImages = ({
   const router = useRouter();
 
   const [imageToUpdate] = useQuery(getHomeImage, { id: homeImageId });
-  const [createHomeImageMutation] = useMutation(createHomeImage);
-  const [updateHomeImageDescriptionMutation] = useMutation(
-    updateHomeImageDescription
-  );
+  const [createHomeImageMutation, { isLoading: isCreateLoading }] =
+    useMutation(createHomeImage);
+  const [updateHomeImageDescriptionMutation, { isLoading: isUpdateLoading }] =
+    useMutation(updateHomeImageDescription);
 
   const handleUpsertHomeImage = async (): Promise<void> => {
     try {
@@ -126,5 +127,6 @@ export const useUpsertHomeImages = ({
     formState,
     handleInputChange,
     handleSubmit,
+    isLoading: isCreateLoading || isUpdateLoading,
   };
 };

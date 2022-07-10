@@ -1,11 +1,4 @@
-.CovenantLinkContainer {
-  display: grid;
-  gap: 24px;
-  font-size: 1.2rem;
-  margin: 32px 0;
-}
-
-.DashboardCovenantLinkContainer {
+.DashboardFileLinkActions {
   display: grid;
   gap: 16px;
 }

@@ -11,10 +11,10 @@ export default resolver.pipe(
       return null;
     }
 
-    return db.homeImage.findUnique({
+    return db.meetingMinute.findUnique({
       select: {
-        description: true,
         id: true,
+        title: true,
       },
       where: {
         id,

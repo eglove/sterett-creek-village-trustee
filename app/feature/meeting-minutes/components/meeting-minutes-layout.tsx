@@ -3,12 +3,12 @@ import coreStyles from '../../core/styles/styles.module.css';
 import { TrussLink } from '../../trussworks/truss-link/truss-link';
 import { Pagination } from '../../util/pagination/components/pagination';
 import {
-  COVENANTS_PAGE_SIZE,
-  useCovenantsLayout,
-} from '../hooks/use-covenants-layout';
+  MEETING_MINUTES_LAYOUT_SIZE,
+  useMeetingMinutesLayout,
+} from '../hooks/use-meeting-minutes-layout';
 
-export const CovenantsLayout = (): JSX.Element => {
-  const { covenants, skip, setSkip, count } = useCovenantsLayout();
+export const MeetingMinutesLayout = (): JSX.Element => {
+  const { meetingMinutes, skip, setSkip, count } = useMeetingMinutesLayout();
 
   if (count === 0) {
     return (
@@ -20,17 +20,17 @@ export const CovenantsLayout = (): JSX.Element => {
 
   return (
     <div className={utilityStyles.CenterOnPage}>
-      <div className={coreStyles.CovenantLinkContainer}>
-        {covenants.map(covenant => {
+      <div className={coreStyles.FileLinkContainer}>
+        {meetingMinutes.map(meetingMinute => {
           return (
-            <TrussLink newTab href={covenant.url} key={covenant.url}>
-              {covenant.title}
+            <TrussLink newTab href={meetingMinute.url} key={meetingMinute.url}>
+              {meetingMinute.title}
             </TrussLink>
           );
         })}
       </div>
       <Pagination
-        pageLength={COVENANTS_PAGE_SIZE}
+        pageLength={MEETING_MINUTES_LAYOUT_SIZE}
         setSkip={setSkip}
         skip={skip}
         totalCount={count}

@@ -19,12 +19,14 @@ type UseForgotPasswordFormReturn = {
   formState: typeof initialState;
   handleInputChange: (event: ChangeEvent) => void;
   handleSubmit: (event: FormEvent) => void;
+  isLoading: boolean;
   isSuccess: boolean;
 };
 
 export const useForgotPasswordForm = (): UseForgotPasswordFormReturn => {
   const [formError, setFormError] = useState<string>();
-  const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword);
+  const [forgotPasswordMutation, { isSuccess, isLoading }] =
+    useMutation(forgotPassword);
 
   const handleForgotPassword = async (): Promise<void> => {
     try {
@@ -57,6 +59,7 @@ export const useForgotPasswordForm = (): UseForgotPasswordFormReturn => {
     formState,
     handleInputChange,
     handleSubmit,
+    isLoading,
     isSuccess,
   };
 };

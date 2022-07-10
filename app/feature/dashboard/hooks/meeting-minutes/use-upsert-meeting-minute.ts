@@ -7,17 +7,17 @@ import { ZodError } from 'zod';
 
 import { getZodFieldErrors } from '../../../../util/zod';
 import { CLOUDINARY_PRESET, CLOUDINARY_URL } from '../../constants';
-import uploadCovenant from '../../mutations/covenants/create-covenant';
-import updateCovenantTitle from '../../mutations/covenants/update-covenant-title';
-import getCovenant from '../../queries/covenants/get-covenant';
+import createMeetingMinute from '../../mutations/meeting-minutes/create-meeting-minute';
+import updateMeetingMinuteTitle from '../../mutations/meeting-minutes/update-meeting-minute-title';
+import getMeetingMinute from '../../queries/meeting-minutes/get-meeting-minute';
 import { CloudinaryImage } from '../../types';
 import {
-  UpdateCovenantTitleSchema,
-  UploadCovenant,
-} from '../../validations/covenants/covenant-validations';
+  UpdateMeetingMinutesTitleSchema,
+  UploadMeetingMinutes,
+} from '../../validations/meeting-minutes/meeting-minutes-validations';
 
-export interface UpdateCovenantProperties {
-  covenantId?: string;
+export interface UpdateMeetingMinuteProperties {
+  meetingMinuteId?: string;
 }
 
 type InitialState = {
@@ -30,7 +30,7 @@ const initialState: InitialState = {
   title: '',
 };
 
-type UseUpsertCovenantReturn = {
+type UseUpsertMeetingMinuteReturn = {
   fieldErrors:
     | Record<keyof typeof initialState, string[] | undefined>
     | undefined;
@@ -41,23 +41,25 @@ type UseUpsertCovenantReturn = {
   isLoading: boolean;
 };
 
-export const useUpsertCovenant = ({
-  covenantId,
-}: UpdateCovenantProperties): UseUpsertCovenantReturn => {
+export const useUpsertMeetingMinute = ({
+  meetingMinuteId,
+}: UpdateMeetingMinuteProperties): UseUpsertMeetingMinuteReturn => {
   const router = useRouter();
 
-  const [updateCovenant] = useQuery(getCovenant, { id: covenantId });
-  const [uploadCovenantMutation, { isLoading: isUploadingLoading }] =
-    useMutation(uploadCovenant);
-  const [updateCovenantTitleMutation, { isLoading: isUpdateLoading }] =
-    useMutation(updateCovenantTitle);
+  const [meetingMinuteToUpdate] = useQuery(getMeetingMinute, {
+    id: meetingMinuteId,
+  });
+  const [uploadMeetingMinuteMutation, { isLoading: isCreateLoading }] =
+    useMutation(createMeetingMinute);
+  const [updateMeetingMinuteTitleMutation, { isLoading: isUpdateLoading }] =
+    useMutation(updateMeetingMinuteTitle);
 
-  const handleUploadCovenant = async (): Promise<void> => {
+  const handleUpsertMeetingMinute = async (): Promise<void> => {
     try {
-      if (typeof covenantId === 'undefined') {
+      if (typeof meetingMinuteId === 'undefined') {
         const fileData = new FormData();
         fileData.append('file', formState.file);
-        fileData.append('upload_preset', CLOUDINARY_PRESET.COVENANT);
+        fileData.append('upload_preset', CLOUDINARY_PRESET.MEETING_MINUTES);
 
         const response = await fetch(CLOUDINARY_URL.IMAGE_UPLOAD, {
           // TODO move this to a server side REST endpoint
@@ -67,8 +69,8 @@ export const useUpsertCovenant = ({
         });
         const data = (await response.json()) as CloudinaryImage;
 
-        await uploadCovenantMutation(
-          UploadCovenant.parse({
+        await uploadMeetingMinuteMutation(
+          UploadMeetingMinutes.parse({
             cloudinaryId: data.public_id,
             height: data.height,
             title: formState.title,
@@ -77,16 +79,17 @@ export const useUpsertCovenant = ({
           })
         );
       } else {
-        const body = UpdateCovenantTitleSchema.parse({
-          id: covenantId,
-          title: formState.title,
-        });
-        await updateCovenantTitleMutation(body);
+        await updateMeetingMinuteTitleMutation(
+          UpdateMeetingMinutesTitleSchema.parse({
+            id: meetingMinuteId,
+            title: formState.title,
+          })
+        );
       }
 
       clearFieldErrors();
       setFormError(undefined);
-      await router.push('/dashboard/covenants');
+      await router.push('/dashboard/meeting-minutes');
     } catch (error: unknown) {
       if (error instanceof ZodError) {
         setFieldErrors(getZodFieldErrors(error, formState));
@@ -107,19 +110,19 @@ export const useUpsertCovenant = ({
     handleInputChange,
     setFormState,
   } = useForm(initialState, {
-    onSubmit: handleUploadCovenant,
+    onSubmit: handleUpsertMeetingMinute,
   });
 
   useEffect(() => {
-    if (updateCovenant !== null) {
+    if (meetingMinuteToUpdate !== null) {
       setFormState(formState_ => {
         return {
           ...formState_,
-          title: updateCovenant.title,
+          title: meetingMinuteToUpdate.title,
         };
       });
     }
-  }, [setFormState, updateCovenant]);
+  }, [meetingMinuteToUpdate, setFormState]);
 
   return {
     fieldErrors,
@@ -127,6 +130,6 @@ export const useUpsertCovenant = ({
     formState,
     handleInputChange,
     handleSubmit,
-    isLoading: isUpdateLoading || isUploadingLoading,
+    isLoading: isUpdateLoading || isCreateLoading,
   };
 };

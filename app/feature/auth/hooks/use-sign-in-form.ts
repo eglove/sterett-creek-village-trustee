@@ -24,12 +24,13 @@ interface UseSignInFormReturn {
   formState: typeof initialState;
   handleInputChange: (event: ChangeEvent) => void;
   handleSubmit: (event: FormEvent) => void;
+  isLoading: boolean;
 }
 
 export const useSignInForm = (
   parameters?: UseSignInFormProperties
 ): UseSignInFormReturn => {
-  const [signInMutation] = useMutation(signIn);
+  const [signInMutation, { isLoading }] = useMutation(signIn);
   const [formError, setFormError] = useState<string>();
 
   const handleSignIn = async (): Promise<void> => {
@@ -65,5 +66,6 @@ export const useSignInForm = (
     formState,
     handleInputChange,
     handleSubmit,
+    isLoading,
   };
 };

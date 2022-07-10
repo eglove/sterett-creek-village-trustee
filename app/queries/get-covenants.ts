@@ -1,7 +1,7 @@
 import { resolver } from 'blitz';
 import db from 'db';
 
-import { PaginateSchema } from '../feature/dashboard/validations/validations';
+import { PaginateSchema } from '../validations';
 
 export default resolver.pipe(
   resolver.zod(PaginateSchema),

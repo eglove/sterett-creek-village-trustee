@@ -27,6 +27,7 @@ type UseSignUpFormReturn = {
   formState: typeof initialState;
   handleInputChange: (event: ChangeEvent) => void;
   handleSubmit: (event: FormEvent) => void;
+  isLoading: boolean;
   setFormState: Dispatch<SetStateAction<typeof initialState>>;
 };
 
@@ -39,7 +40,7 @@ export const useSignUpForm = (
 ): UseSignUpFormReturn => {
   const [formError, setFormError] = useState<string>();
 
-  const [signUpMutation] = useMutation(signUp);
+  const [signUpMutation, { isLoading }] = useMutation(signUp);
 
   const handleSignUp = async (): Promise<void> => {
     try {
@@ -75,6 +76,7 @@ export const useSignUpForm = (
     formState,
     handleInputChange,
     handleSubmit,
+    isLoading,
     setFormState,
   };
 };

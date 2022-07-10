@@ -7,6 +7,10 @@ export const CLOUDINARY_PRESET = {
     process.env.NODE_ENV === 'development'
       ? 'sterett-home-images-test'
       : 'sterett-home-images',
+  MEETING_MINUTES:
+    process.env.NODE_ENV === 'development'
+      ? 'sterett-meeting-minutes-test'
+      : 'sterett-meeting-minutes',
 };
 
 export const CLOUDINARY_URL = {

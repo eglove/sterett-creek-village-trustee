@@ -6,23 +6,23 @@ import { TrussFileInput } from '../../../trussworks/truss-form/truss-file-input'
 import { TrussForm } from '../../../trussworks/truss-form/truss-form';
 import { TrussTextInput } from '../../../trussworks/truss-form/truss-text-input';
 import {
-  UpsertHomeImagesProperties,
-  useUpsertHomeImages,
-} from '../../hooks/home-images/use-upsert-home-images';
+  UpdateMeetingMinuteProperties,
+  useUpsertMeetingMinute,
+} from '../../hooks/meeting-minutes/use-upsert-meeting-minute';
 
-export const UpsertHomeImagesForm = ({
-  homeImageId,
-}: UpsertHomeImagesProperties): JSX.Element => {
+export const UpsertMeetingMinuteForm = ({
+  meetingMinuteId,
+}: UpdateMeetingMinuteProperties): JSX.Element => {
   const router = useRouter();
 
   const {
     formState,
-    handleSubmit,
     handleInputChange,
-    isLoading,
+    handleSubmit,
     fieldErrors,
     formError,
-  } = useUpsertHomeImages({ homeImageId });
+    isLoading,
+  } = useUpsertMeetingMinute({ meetingMinuteId });
 
   return (
     <div className={utilityStyles.CenterOnPage}>
@@ -30,18 +30,18 @@ export const UpsertHomeImagesForm = ({
         disabled={isLoading}
         errorMessage={formError}
         legend={`${
-          typeof homeImageId === 'undefined' ? 'Create' : 'Update'
-        } Home Image`}
+          typeof meetingMinuteId === 'undefined' ? 'Create' : 'Update'
+        } Meeting Minute`}
         onSubmit={handleSubmit}
       >
         <TrussTextInput
-          errorMessages={fieldErrors?.description}
-          label="Description"
-          name="description"
-          value={formState.description}
+          errorMessages={fieldErrors?.title}
+          label="Title"
+          name="title"
+          value={formState.title}
           onChange={handleInputChange}
         />
-        {typeof homeImageId === 'undefined' && (
+        {typeof meetingMinuteId === 'undefined' && (
           <TrussFileInput
             errorMessages={fieldErrors?.file}
             label="File"
@@ -51,13 +51,13 @@ export const UpsertHomeImagesForm = ({
         )}
         <ButtonGroup>
           <Button type="submit">
-            {typeof homeImageId === 'undefined' ? 'Create' : 'Update'}
+            {typeof meetingMinuteId === 'undefined' ? 'Create' : 'Update'}
           </Button>
           <Button
             className="bg-accent-cool-dark"
             type="button"
             onClick={async (): Promise<void> => {
-              await router.push('/dashboard/home-images');
+              await router.push('/dashboard/meeting-minutes');
             }}
           >
             Go Back

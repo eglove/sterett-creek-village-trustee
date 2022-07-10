@@ -15,12 +15,19 @@ export const UpsertCovenantForm = (
 ): JSX.Element => {
   const router = useRouter();
 
-  const { formState, handleInputChange, handleSubmit, fieldErrors, formError } =
-    useUpsertCovenant(updateProperties);
+  const {
+    formState,
+    handleInputChange,
+    handleSubmit,
+    fieldErrors,
+    formError,
+    isLoading,
+  } = useUpsertCovenant(updateProperties);
 
   return (
     <div className={utilityStyles.CenterOnPage}>
       <TrussForm
+        disabled={isLoading}
         errorMessage={formError}
         legend={`${
           typeof updateProperties.covenantId === 'undefined'

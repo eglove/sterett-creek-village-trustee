@@ -11,6 +11,7 @@ export const ForgotPasswordForm = (): JSX.Element => {
     formState,
     handleInputChange,
     handleSubmit,
+    isLoading,
     fieldErrors,
     isSuccess,
   } = useForgotPasswordForm();
@@ -30,6 +31,7 @@ export const ForgotPasswordForm = (): JSX.Element => {
   return (
     <div className={utilityStyles.CenterOnPage}>
       <TrussForm
+        disabled={isLoading}
         errorMessage={formError}
         legend="Forgot Password"
         onSubmit={handleSubmit}

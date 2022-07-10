@@ -3,8 +3,8 @@ import { useMutation, useQuery, useRouter } from 'blitz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import getHomeImages from '../../../../queries/get-home-images';
+import { IdSchema } from '../../../../validations';
 import deleteHomeImage from '../../mutations/home-images/delete-home-image';
-import { IdSchema } from '../../validations/validations';
 
 type UseManageHomeImages = {
   count: number;

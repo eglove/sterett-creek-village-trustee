@@ -13,14 +13,21 @@ interface SignUpFormProperties {
 export const SignUpForm = ({
   onSuccess,
 }: SignUpFormProperties): JSX.Element => {
-  const { formState, handleInputChange, handleSubmit, fieldErrors, formError } =
-    useSignUpForm({
-      onSuccess,
-    });
+  const {
+    formState,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+    fieldErrors,
+    formError,
+  } = useSignUpForm({
+    onSuccess,
+  });
 
   return (
     <div className={utilStyles.CenterOnPage}>
       <TrussForm
+        disabled={isLoading}
         errorMessage={formError}
         legend="Sign up"
         onSubmit={handleSubmit}

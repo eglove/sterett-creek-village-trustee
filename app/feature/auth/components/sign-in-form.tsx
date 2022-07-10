@@ -11,12 +11,19 @@ interface SignInFormProperties {
 }
 
 export const SignInForm = (parameters: SignInFormProperties): JSX.Element => {
-  const { formState, formError, fieldErrors, handleSubmit, handleInputChange } =
-    useSignInForm({ onSuccess: parameters.onSuccess });
+  const {
+    formState,
+    formError,
+    fieldErrors,
+    handleSubmit,
+    handleInputChange,
+    isLoading,
+  } = useSignInForm({ onSuccess: parameters.onSuccess });
 
   return (
     <div className={utilStyles.CenterOnPage}>
       <TrussForm
+        disabled={isLoading}
         errorMessage={formError}
         legend="Sign in"
         onSubmit={handleSubmit}

@@ -19,6 +19,7 @@ type UseResetPasswordFormReturn = {
   formState: InitialState;
   handleInputChange: (event: ChangeEvent) => void;
   handleSubmit: (event: FormEvent) => void;
+  isLoading: boolean;
   isSuccess: boolean;
 };
 
@@ -26,7 +27,8 @@ export const useResetPasswordForm = (): UseResetPasswordFormReturn => {
   const query = useRouterQuery();
 
   const [formError, setFormError] = useState<string>();
-  const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword);
+  const [resetPasswordMutation, { isSuccess, isLoading }] =
+    useMutation(resetPassword);
 
   const initialState = {
     confirmPassword: '',
@@ -65,6 +67,7 @@ export const useResetPasswordForm = (): UseResetPasswordFormReturn => {
     formState,
     handleInputChange,
     handleSubmit,
+    isLoading,
     isSuccess,
   };
 };

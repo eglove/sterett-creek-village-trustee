@@ -17,7 +17,7 @@ export default resolver.pipe(
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     });
 
-    const covenant = await db.covenant.delete({
+    const meetingMinute = await db.meetingMinute.delete({
       select: {
         cloudinaryId: true,
         id: true,
@@ -27,8 +27,8 @@ export default resolver.pipe(
       },
     });
 
-    await cloudinary.uploader.destroy(covenant.cloudinaryId);
+    await cloudinary.uploader.destroy(meetingMinute.cloudinaryId);
 
-    return { id: covenant.id };
+    return { id: meetingMinute.id };
   }
 );
