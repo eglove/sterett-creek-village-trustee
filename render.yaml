@@ -2,7 +2,7 @@ services:
   - type: web
     name: sterett
     env: node
-    plan: free
+    plan: starter
     buildCommand:
       yarn --frozen-lockfile --prod=false &&
       blitz prisma generate &&
@@ -21,4 +21,4 @@ services:
 
 databases:
   - name: sterett-db
-    plan: free
+    plan: starter
