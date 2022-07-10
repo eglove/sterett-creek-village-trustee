@@ -1,8 +1,13 @@
 .CovenantLinkContainer {
   display: grid;
-  gap: 16px;
+  gap: 24px;
   font-size: 1.2rem;
   margin: 32px 0;
+}
+
+.DashboardCovenantLinkContainer {
+  display: grid;
+  gap: 16px;
 }
 
 .EventContainer {
@@ -13,6 +18,7 @@
 .DateTime {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  gap: 16px;
 }
 
 .EventTimes {

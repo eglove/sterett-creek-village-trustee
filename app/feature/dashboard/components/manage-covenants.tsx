@@ -46,7 +46,10 @@ export const ManageCovenants = (): JSX.Element => {
       <div className={styles.CovenantLinkContainer}>
         {covenants.map(covenant => {
           return (
-            <div key={covenant.id}>
+            <div
+              className={styles.DashboardCovenantLinkContainer}
+              key={covenant.id}
+            >
               <TrussLink newTab href={covenant.url}>
                 {covenant.title}
               </TrussLink>

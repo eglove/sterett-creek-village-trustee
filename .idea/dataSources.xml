@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="db" uuid="718b3fef-25df-4c22-8dbe-3f8663f4c143">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>f07c9cf4-eaec-40a7-8f9a-c8dbf8baa364</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\hello\Projects\sterett-creek-village-trustee\db\db.sqlite</jdbc-url>
@@ -12,6 +12,13 @@
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.36.0.3/sqlite-jdbc-3.36.0.3.jar</url>
         </library>
       </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="sterett_db@dpg-cb54do0nlki7fbb0lmag-a" uuid="d0101f5d-aff5-499f-a98d-96f997b6f399">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://dpg-cb54do0nlki7fbb0lmag-a:5432/sterett_db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>

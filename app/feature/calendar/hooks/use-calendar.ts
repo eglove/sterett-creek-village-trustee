@@ -2,7 +2,16 @@ import { dayStartEnd } from '@ethang/utilities';
 import { ModalRef } from '@trussworks/react-uswds';
 import { useMutation } from 'blitz';
 import { endOfWeek, startOfWeek } from 'date-fns';
-import { RefObject, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { View, ViewsProps } from 'react-big-calendar';
 
 import getCalendarEvents from '../mutations/get-calendar-events';
 
@@ -14,9 +23,12 @@ type UseCalendarReturn = {
   handleSelectEvent: (event: CalendarEvent) => void;
   selectedEvent: CalendarEvent | undefined;
   selectedEventRef: RefObject<ModalRef>;
+  setView: Dispatch<SetStateAction<View>>;
+  view: View;
+  views: ViewsProps;
 };
 
-type CalendarEvent = {
+export type CalendarEvent = {
   description: string;
   end: Date;
   start: Date;
@@ -24,11 +36,15 @@ type CalendarEvent = {
 };
 
 const today = new Date();
+const defaultViews: ViewsProps = ['month', 'week', 'day', 'agenda'];
+const mobileViews: ViewsProps = ['day', 'agenda'];
 
 export const useCalendar = (): UseCalendarReturn => {
   const selectedEventRef = useRef() as RefObject<ModalRef>;
 
   const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [views, setViews] = useState<ViewsProps>(defaultViews);
+  const [view, setView] = useState<View>('week');
 
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent>();
 
@@ -79,6 +95,22 @@ export const useCalendar = (): UseCalendarReturn => {
     selectedEventRef.current?.toggleModal();
   };
 
+  const handleViewChange = useCallback(
+    (newView: View = view): void => {
+      if (innerWidth <= 768) {
+        if (!mobileViews.includes(newView)) {
+          setView('day');
+        }
+
+        setViews(mobileViews);
+      } else {
+        setView(newView);
+        setViews(defaultViews);
+      }
+    },
+    [view]
+  );
+
   const [getCalendarEventsMutation] = useMutation(getCalendarEvents);
 
   useEffect(() => {
@@ -96,11 +128,30 @@ export const useCalendar = (): UseCalendarReturn => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    addEventListener('resize', () => {
+      handleViewChange();
+    });
+
+    return (): void => {
+      removeEventListener('resize', () => {
+        handleViewChange();
+      });
+    };
+  }, [handleViewChange]);
+
+  useEffect(() => {
+    handleViewChange();
+  }, [handleViewChange]);
+
   return {
     events,
     handleRangeChange,
     handleSelectEvent,
     selectedEvent,
     selectedEventRef,
+    setView,
+    view,
+    views,
   };
 };

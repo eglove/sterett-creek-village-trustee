@@ -32,6 +32,9 @@ export const CalendarLayout = (): JSX.Element | null => {
     handleSelectEvent,
     selectedEvent,
     selectedEventRef,
+    setView,
+    view,
+    views,
   } = useCalendar();
 
   if (typeof window === 'undefined') {
@@ -48,8 +51,11 @@ export const CalendarLayout = (): JSX.Element | null => {
         localizer={localizer}
         startAccessor="start"
         style={{ height: window.innerHeight - 200, width: '80%' }}
+        view={view}
+        views={views}
         onRangeChange={handleRangeChange}
         onSelectEvent={handleSelectEvent}
+        onView={setView}
       />
       <Modal id="selectedEvent" ref={selectedEventRef}>
         <ModalHeading>{selectedEvent?.title}</ModalHeading>

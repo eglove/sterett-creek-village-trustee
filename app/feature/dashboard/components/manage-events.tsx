@@ -43,6 +43,7 @@ export const ManageEvents = (): JSX.Element => {
           Go Back
         </Button>
       </ButtonGroup>
+      <div style={{ marginBottom: '32px' }} />
       {events.map(event => {
         return (
           <div key={event.id}>
@@ -78,6 +79,7 @@ export const ManageEvents = (): JSX.Element => {
           </div>
         );
       })}
+      <div style={{ marginTop: '32px' }} />
       <Pagination
         pageLength={EVENTS_PAGE_SIZE}
         setSkip={setSkip}
