@@ -8,6 +8,7 @@ export const HomeLayout = (): JSX.Element => {
   const [images] = useQuery(getHomeImagesAll, undefined, {
     refetchInterval: false,
     refetchIntervalInBackground: false,
+    refetchOnMount: false,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
   });
