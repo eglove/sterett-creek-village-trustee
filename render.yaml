@@ -20,5 +20,5 @@ services:
         generateValue: true
 
 databases:
-  - name: blitzapp-db
+  - name: sterett-db
     plan: free
