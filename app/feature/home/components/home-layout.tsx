@@ -16,7 +16,7 @@ export const HomeLayout = (): JSX.Element => {
   return (
     <div className={styles.HomeLayout}>
       <Masonry
-        className={styles.Masonry}
+        className={styles.Masonry ?? ''}
         breakpointCols={{
           1024: 3,
           1440: 4,
