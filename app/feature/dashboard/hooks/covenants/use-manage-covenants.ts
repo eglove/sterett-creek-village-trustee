@@ -1,14 +1,14 @@
-import { Covenant } from '@prisma/client';
+import { File } from '@prisma/client';
 import { useMutation, useQuery, useRouter } from 'blitz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
+import deleteFile from '../../../../mutations/delete-file';
 import getCovenants from '../../../../queries/get-covenants';
 import { IdSchema } from '../../../../validations';
-import deleteCovenant from '../../mutations/covenants/delete-covenant';
 
 type UseManageCovenantsReturn = {
   count: number;
-  covenants: Array<Pick<Covenant, 'id' | 'title' | 'url'>>;
+  covenants: Array<Pick<File, 'id' | 'fileName' | 'url'>>;
   handleDeleteCovenant: (id: string) => Promise<void>;
   handleNavigateToUpsert: (id?: string) => Promise<void>;
   isLoading: boolean;
@@ -27,7 +27,7 @@ export const useManageCovenants = (): UseManageCovenantsReturn => {
     take: COVENANTS_DASHBOARD_PAGE_SIZE,
   });
 
-  const [deleteCovenantMutation, { isLoading }] = useMutation(deleteCovenant);
+  const [deleteCovenantMutation, { isLoading }] = useMutation(deleteFile);
 
   const handleNavigateToUpsert = async (id?: string): Promise<void> => {
     if (typeof id === 'undefined') {
@@ -45,7 +45,7 @@ export const useManageCovenants = (): UseManageCovenantsReturn => {
 
   return {
     count: data.count,
-    covenants: data.covenants,
+    covenants: data.files,
     handleDeleteCovenant,
     handleNavigateToUpsert,
     isLoading,

@@ -1,20 +1,14 @@
 import { useForm } from '@ethang/react';
-import { HTTP_METHOD } from '@ethang/utilities';
 import { useMutation, useQuery, useRouter } from 'blitz';
-import FormData from 'form-data';
+import { useS3Upload } from 'next-s3-upload';
 import { ChangeEvent, FormEvent, useEffect } from 'react';
 import { ZodError } from 'zod';
 
+import createFile from '../../../../mutations/create-file';
+import updateFileName from '../../../../mutations/update-file-name';
 import { getZodFieldErrors } from '../../../../util/zod';
-import { CLOUDINARY_PRESET, CLOUDINARY_URL } from '../../constants';
-import uploadCovenant from '../../mutations/covenants/create-covenant';
-import updateCovenantTitle from '../../mutations/covenants/update-covenant-title';
+import { FileSchema, UpdateFileNameSchema } from '../../../../validations';
 import getCovenant from '../../queries/covenants/get-covenant';
-import { CloudinaryImage } from '../../types';
-import {
-  UpdateCovenantTitleSchema,
-  UploadCovenant,
-} from '../../validations/covenants/covenant-validations';
 
 export interface UpdateCovenantProperties {
   covenantId?: string;
@@ -45,43 +39,36 @@ export const useUpsertCovenant = ({
   covenantId,
 }: UpdateCovenantProperties): UseUpsertCovenantReturn => {
   const router = useRouter();
+  const { uploadToS3 } = useS3Upload();
 
   const [updateCovenant] = useQuery(getCovenant, { id: covenantId });
   const [uploadCovenantMutation, { isLoading: isUploadingLoading }] =
-    useMutation(uploadCovenant);
+    useMutation(createFile);
   const [updateCovenantTitleMutation, { isLoading: isUpdateLoading }] =
-    useMutation(updateCovenantTitle);
+    useMutation(updateFileName);
 
   const handleUploadCovenant = async (): Promise<void> => {
     try {
-      if (typeof covenantId === 'undefined') {
-        const fileData = new FormData();
-        fileData.append('file', formState.file);
-        fileData.append('upload_preset', CLOUDINARY_PRESET.COVENANT);
-
-        const response = await fetch(CLOUDINARY_URL.IMAGE_UPLOAD, {
-          // TODO move this to a server side REST endpoint
-          // @ts-expect-error Using form data
-          body: fileData,
-          method: HTTP_METHOD.POST,
-        });
-        const data = (await response.json()) as CloudinaryImage;
+      if (
+        typeof covenantId === 'undefined' &&
+        typeof formState.file !== 'undefined'
+      ) {
+        const uploaded = await uploadToS3(formState.file);
 
         await uploadCovenantMutation(
-          UploadCovenant.parse({
-            cloudinaryId: data.public_id,
-            height: data.height,
-            title: formState.title,
-            url: data.secure_url,
-            width: data.width,
+          FileSchema.parse({
+            ...uploaded,
+            fileName: formState.title,
+            fileType: 'COVENANTS',
           })
         );
       } else {
-        const body = UpdateCovenantTitleSchema.parse({
-          id: covenantId,
-          title: formState.title,
-        });
-        await updateCovenantTitleMutation(body);
+        await updateCovenantTitleMutation(
+          UpdateFileNameSchema.parse({
+            fileName: formState.title,
+            id: covenantId,
+          })
+        );
       }
 
       clearFieldErrors();

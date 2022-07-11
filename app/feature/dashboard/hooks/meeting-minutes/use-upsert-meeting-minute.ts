@@ -4,10 +4,10 @@ import { useS3Upload } from 'next-s3-upload';
 import { ChangeEvent, FormEvent, useEffect } from 'react';
 import { ZodError } from 'zod';
 
+import createFile from '../../../../mutations/create-file';
+import updateFileName from '../../../../mutations/update-file-name';
 import { getZodFieldErrors } from '../../../../util/zod';
 import { FileSchema, UpdateFileNameSchema } from '../../../../validations';
-import createMeetingMinute from '../../mutations/meeting-minutes/create-meeting-minute';
-import updateMeetingMinuteTitle from '../../mutations/meeting-minutes/update-meeting-minute-title';
 import getMeetingMinute from '../../queries/meeting-minutes/get-meeting-minute';
 
 export interface UpdateMeetingMinuteProperties {
@@ -45,9 +45,9 @@ export const useUpsertMeetingMinute = ({
     id: meetingMinuteId,
   });
   const [uploadMeetingMinuteMutation, { isLoading: isCreateLoading }] =
-    useMutation(createMeetingMinute);
+    useMutation(createFile);
   const [updateMeetingMinuteTitleMutation, { isLoading: isUpdateLoading }] =
-    useMutation(updateMeetingMinuteTitle);
+    useMutation(updateFileName);
 
   const handleUpsertMeetingMinute = async (): Promise<void> => {
     try {

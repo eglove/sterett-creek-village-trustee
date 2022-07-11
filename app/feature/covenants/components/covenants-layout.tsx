@@ -24,7 +24,7 @@ export const CovenantsLayout = (): JSX.Element => {
         {covenants.map(covenant => {
           return (
             <TrussLink newTab href={covenant.url} key={covenant.url}>
-              {covenant.title}
+              {covenant.fileName}
             </TrussLink>
           );
         })}

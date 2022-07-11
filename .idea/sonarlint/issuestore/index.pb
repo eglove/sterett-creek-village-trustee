@@ -53,8 +53,6 @@ W
 'app/feature/home/styles/home.module.css,b\8\b80108bdfb11d3069d82182989e4e200be7acd2b
 J
 app/styles/util.module.css,a\f\af26f17104c6cd3715f7c03deb1075a62ca7a6c7
-=
-.editorconfig,6\2\626a747c8694eaae66f2afb3d1a745b045782c70
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
@@ -62,8 +60,6 @@ q
 Aapp/feature/dashboard/hooks/home-images/use-manage-home-images.ts,f\3\f35b3c1782022ecae67f6f9a7482248f344e0ca5
 4
 .env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
-<
-package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 O
 app/feature/auth/validations.ts,2\6\26b324da1334732718c4254ef2766407bc59fa17
 Y
@@ -102,5 +98,3 @@ Happ/feature/dashboard/components/home-images/upsert-home-images-form.tsx,b\9\b
 Papp/feature/dashboard/validations/meeting-minutes/meeting-minutes-validations.ts,9\3\9379c579166252969f84d0ee5ecc9d3c473a5b35
 ?
 app/util/zod.ts,a\d\ad03a45023822ad025881a9036e3782b0e4886c3
-x
-Happ/feature/dashboard/mutations/meeting-minutes/create-meeting-minute.ts,0\e\0e2c113f45332dc13e01b6fceade12fe1f2559a8

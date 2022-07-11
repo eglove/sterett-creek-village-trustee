@@ -50,7 +50,7 @@ export const ManageCovenants = (): JSX.Element => {
           return (
             <div className={styles.DashboardFileLinkActions} key={covenant.id}>
               <TrussLink newTab href={covenant.url}>
-                {covenant.title}
+                {covenant.fileName}
               </TrussLink>
               <ButtonGroup>
                 <Button

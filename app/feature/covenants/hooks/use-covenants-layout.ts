@@ -1,4 +1,4 @@
-import { Covenant } from '@prisma/client';
+import { File } from '@prisma/client';
 import { useQuery } from 'blitz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
@@ -8,7 +8,7 @@ export const COVENANTS_PAGE_SIZE = 5;
 
 type UseCovenantsLayoutReturn = {
   count: number;
-  covenants: Array<Pick<Covenant, 'id' | 'title' | 'url'>>;
+  covenants: Array<Pick<File, 'id' | 'fileName' | 'url'>>;
   setSkip: Dispatch<SetStateAction<number>>;
   skip: number;
 };
@@ -16,14 +16,14 @@ type UseCovenantsLayoutReturn = {
 export const useCovenantsLayout = (): UseCovenantsLayoutReturn => {
   const [skip, setSkip] = useState(0);
 
-  const [{ covenants, count }] = useQuery(getCovenants, {
+  const [{ files, count }] = useQuery(getCovenants, {
     skip,
     take: COVENANTS_PAGE_SIZE,
   });
 
   return {
     count,
-    covenants,
+    covenants: files,
     setSkip,
     skip,
   };
