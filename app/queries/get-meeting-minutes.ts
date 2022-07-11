@@ -6,26 +6,29 @@ import { PaginateSchema } from '../validations';
 export default resolver.pipe(
   resolver.zod(PaginateSchema),
   async ({ take, skip }) => {
-    const count = db.meetingMinute.count();
+    const count = db.file.count();
 
-    const meetingMinutes = db.meetingMinute.findMany({
+    const files = db.file.findMany({
       orderBy: {
         updatedAt: 'desc',
       },
       select: {
+        fileName: true,
         id: true,
-        title: true,
         url: true,
       },
       skip,
       take,
+      where: {
+        fileType: 'MEETING_MINUTES',
+      },
     });
 
-    const resolved = await Promise.all([count, meetingMinutes]);
+    const resolved = await Promise.all([count, files]);
 
     return {
       count: resolved[0],
-      meetingMinutes: resolved[1],
+      files: resolved[1],
     };
   }
 );

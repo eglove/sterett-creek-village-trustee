@@ -1,20 +1,14 @@
 import { useForm } from '@ethang/react';
-import { HTTP_METHOD } from '@ethang/utilities';
 import { useMutation, useQuery, useRouter } from 'blitz';
-import FormData from 'form-data';
+import { useS3Upload } from 'next-s3-upload';
 import { ChangeEvent, FormEvent, useEffect } from 'react';
 import { ZodError } from 'zod';
 
 import { getZodFieldErrors } from '../../../../util/zod';
-import { CLOUDINARY_PRESET, CLOUDINARY_URL } from '../../constants';
+import { FileSchema, UpdateFileNameSchema } from '../../../../validations';
 import createMeetingMinute from '../../mutations/meeting-minutes/create-meeting-minute';
 import updateMeetingMinuteTitle from '../../mutations/meeting-minutes/update-meeting-minute-title';
 import getMeetingMinute from '../../queries/meeting-minutes/get-meeting-minute';
-import { CloudinaryImage } from '../../types';
-import {
-  UpdateMeetingMinutesTitleSchema,
-  UploadMeetingMinutes,
-} from '../../validations/meeting-minutes/meeting-minutes-validations';
 
 export interface UpdateMeetingMinuteProperties {
   meetingMinuteId?: string;
@@ -45,6 +39,7 @@ export const useUpsertMeetingMinute = ({
   meetingMinuteId,
 }: UpdateMeetingMinuteProperties): UseUpsertMeetingMinuteReturn => {
   const router = useRouter();
+  const { uploadToS3 } = useS3Upload();
 
   const [meetingMinuteToUpdate] = useQuery(getMeetingMinute, {
     id: meetingMinuteId,
@@ -56,33 +51,24 @@ export const useUpsertMeetingMinute = ({
 
   const handleUpsertMeetingMinute = async (): Promise<void> => {
     try {
-      if (typeof meetingMinuteId === 'undefined') {
-        const fileData = new FormData();
-        fileData.append('file', formState.file);
-        fileData.append('upload_preset', CLOUDINARY_PRESET.MEETING_MINUTES);
-
-        const response = await fetch(CLOUDINARY_URL.IMAGE_UPLOAD, {
-          // TODO move this to a server side REST endpoint
-          // @ts-expect-error Using form data
-          body: fileData,
-          method: HTTP_METHOD.POST,
-        });
-        const data = (await response.json()) as CloudinaryImage;
+      if (
+        typeof meetingMinuteId === 'undefined' &&
+        typeof formState.file !== 'undefined'
+      ) {
+        const uploaded = await uploadToS3(formState.file);
 
         await uploadMeetingMinuteMutation(
-          UploadMeetingMinutes.parse({
-            cloudinaryId: data.public_id,
-            height: data.height,
-            title: formState.title,
-            url: data.secure_url,
-            width: data.width,
+          FileSchema.parse({
+            ...uploaded,
+            fileName: formState.title,
+            fileType: 'MEETING_MINUTES',
           })
         );
       } else {
         await updateMeetingMinuteTitleMutation(
-          UpdateMeetingMinutesTitleSchema.parse({
+          UpdateFileNameSchema.parse({
+            fileName: formState.title,
             id: meetingMinuteId,
-            title: formState.title,
           })
         );
       }
@@ -118,7 +104,7 @@ export const useUpsertMeetingMinute = ({
       setFormState(formState_ => {
         return {
           ...formState_,
-          title: meetingMinuteToUpdate.title,
+          title: meetingMinuteToUpdate.fileName,
         };
       });
     }

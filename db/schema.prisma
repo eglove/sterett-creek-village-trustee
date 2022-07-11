@@ -12,6 +12,11 @@ generator client {
 
 // --------------------------------------
 
+enum FileType {
+  COVENANTS
+  MEETING_MINUTES
+}
+
 enum Role {
   ADMIN
   USER
@@ -40,6 +45,17 @@ model Event {
   description String
   startsAt    DateTime
   endsAt      DateTime
+}
+
+model File {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  fileName  String   @unique
+  fileType  FileType
+  key       String
+  url       String
+  bucket    String
 }
 
 model HomeImage {

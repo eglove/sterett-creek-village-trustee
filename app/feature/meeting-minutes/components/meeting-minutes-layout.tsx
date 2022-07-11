@@ -8,7 +8,7 @@ import {
 } from '../hooks/use-meeting-minutes-layout';
 
 export const MeetingMinutesLayout = (): JSX.Element => {
-  const { meetingMinutes, skip, setSkip, count } = useMeetingMinutesLayout();
+  const { files, skip, setSkip, count } = useMeetingMinutesLayout();
 
   if (count === 0) {
     return (
@@ -21,10 +21,10 @@ export const MeetingMinutesLayout = (): JSX.Element => {
   return (
     <div className={utilityStyles.CenterOnPage}>
       <div className={coreStyles.FileLinkContainer}>
-        {meetingMinutes.map(meetingMinute => {
+        {files.map(file => {
           return (
-            <TrussLink newTab href={meetingMinute.url} key={meetingMinute.url}>
-              {meetingMinute.title}
+            <TrussLink newTab href={file.url} key={file.url}>
+              {file.fileName}
             </TrussLink>
           );
         })}

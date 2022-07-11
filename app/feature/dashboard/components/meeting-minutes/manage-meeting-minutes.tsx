@@ -18,7 +18,7 @@ export const ManageMeetingMinutes = (): JSX.Element => {
     handleDeleteMeetingMinute,
     handleNavigateToUpsert,
     isLoading,
-    meetingMinutes,
+    files,
     setSkip,
     skip,
     count,
@@ -46,21 +46,18 @@ export const ManageMeetingMinutes = (): JSX.Element => {
         </Button>
       </ButtonGroup>
       <div className={coreStyles.FileLinkContainer}>
-        {meetingMinutes.map(meetingMinute => {
+        {files.map(file => {
           return (
-            <div
-              className={styles.DashboardFileLinkActions}
-              key={meetingMinute.id}
-            >
-              <TrussLink newTab href={meetingMinute.url}>
-                {meetingMinute.title}
+            <div className={styles.DashboardFileLinkActions} key={file.id}>
+              <TrussLink newTab href={file.url}>
+                {file.fileName}
               </TrussLink>
               <ButtonGroup>
                 <Button
                   className="bg-accent-warm"
                   type="button"
                   onClick={async (): Promise<void> => {
-                    await handleNavigateToUpsert(meetingMinute.id);
+                    await handleNavigateToUpsert(file.id);
                   }}
                 >
                   Update
@@ -70,7 +67,7 @@ export const ManageMeetingMinutes = (): JSX.Element => {
                   disabled={isLoading}
                   type="button"
                   onClick={async (): Promise<void> => {
-                    await handleDeleteMeetingMinute(meetingMinute.id);
+                    await handleDeleteMeetingMinute(file.id);
                   }}
                 >
                   Delete

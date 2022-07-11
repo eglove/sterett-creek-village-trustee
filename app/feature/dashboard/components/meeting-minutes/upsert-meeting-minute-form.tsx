@@ -30,8 +30,8 @@ export const UpsertMeetingMinuteForm = ({
         disabled={isLoading}
         errorMessage={formError}
         legend={`${
-          typeof meetingMinuteId === 'undefined' ? 'Create' : 'Update'
-        } Meeting Minute`}
+          typeof meetingMinuteId === 'undefined' ? 'Add' : 'Update'
+        } Meeting Minutes`}
         onSubmit={handleSubmit}
       >
         <TrussTextInput

@@ -1,15 +1,15 @@
 import { resolver } from 'blitz';
 import db from 'db';
 
-import { UpdateMeetingMinutesTitleSchema } from '../../validations/meeting-minutes/meeting-minutes-validations';
+import { UpdateFileNameSchema } from '../../../../validations';
 
 export default resolver.pipe(
   resolver.authorize(),
-  resolver.zod(UpdateMeetingMinutesTitleSchema),
-  async ({ id, title }) => {
-    return db.meetingMinute.update({
+  resolver.zod(UpdateFileNameSchema),
+  async ({ id, fileName }) => {
+    return db.file.update({
       data: {
-        title,
+        fileName,
       },
       select: {
         id: true,
