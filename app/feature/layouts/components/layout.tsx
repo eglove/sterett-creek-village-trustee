@@ -68,32 +68,32 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
       <div className={`usa-overlay ${expanded ? 'is-visible' : ''}`} />
       <Head>
         <title>{title ?? 'Sterett Creek Village Trustee'}</title>
-        <link href="/public/favicon.ico" rel="icon" />
+
+        {/* Favicons */}
         <link
-          href="/public/apple-touch-icon.png"
+          href="/apple-touch-icon.png"
           rel="apple-touch-icon"
-          sizes="76x76"
+          sizes="180x180"
         />
         <link
-          href="/public/favicon-32x32.png"
+          href="/favicon-32x32.png"
           rel="icon"
           sizes="32x32"
           type="image/png"
         />
         <link
-          href="/public/favicon-16x16.png"
+          href="/favicon-16x16.png"
           rel="icon"
           sizes="16x16"
           type="image/png"
         />
-        <link href="/public/site.webmanifest" rel="manifest" />
-        <link
-          color="#000000"
-          href="/public/safari-pinned-tab.svg"
-          rel="mask-icon"
-        />
+        <link href="/site.webmanifest" rel="manifest" />
+        <link color="#5bbad5" href="/safari-pinned-tab.svg" rel="mask-icon" />
+        <link href="/favicon.ico" rel="shortcut icon" />
         <meta content="#ffc40d" name="msapplication-TileColor" />
+        <meta content="/public/browserconfig.xml" name="msapplication-config" />
         <meta content="#ffffff" name="theme-color" />
+        {/* Favicons */}
       </Head>
       <Header extended className={styles.Navigation}>
         <div className="usa-navbar">
