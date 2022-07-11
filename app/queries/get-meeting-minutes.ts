@@ -6,7 +6,7 @@ import { PaginateSchema } from '../validations';
 export default resolver.pipe(
   resolver.zod(PaginateSchema),
   async ({ take, skip }) => {
-    const count = db.file.count();
+    const count = db.file.count({ where: { fileType: 'MEETING_MINUTES' } });
 
     const files = db.file.findMany({
       orderBy: {
