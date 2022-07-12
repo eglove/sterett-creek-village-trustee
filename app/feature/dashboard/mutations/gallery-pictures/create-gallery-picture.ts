@@ -1,11 +1,11 @@
 import { resolver } from 'blitz';
 import db from 'db';
 
-import { CreateHomeImageSchema } from '../../validations/home-image/home-image-validations';
+import { CreateGalleryPictureSchema } from '../../validations/gallery-picture/gallery-picture-validations';
 
 export default resolver.pipe(
   resolver.authorize(),
-  resolver.zod(CreateHomeImageSchema),
+  resolver.zod(CreateGalleryPictureSchema),
   async ({ description, height, url, width, cloudinaryId }) => {
     return db.homeImage.create({
       data: {

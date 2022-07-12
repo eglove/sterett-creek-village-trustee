@@ -11,10 +11,10 @@ export default resolver.pipe(
       return null;
     }
 
-    return db.covenant.findUnique({
+    return db.file.findUnique({
       select: {
+        fileName: true,
         id: true,
-        title: true,
       },
       where: {
         id,

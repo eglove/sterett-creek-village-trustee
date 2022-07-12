@@ -1,11 +1,11 @@
 import { resolver } from 'blitz';
 import db from 'db';
 
-import { UpdateHomeImageDescriptionSchema } from '../../validations/home-image/home-image-validations';
+import { UpdateGalleryPictureDescriptionSchema } from '../../validations/gallery-picture/gallery-picture-validations';
 
 export default resolver.pipe(
   resolver.authorize(),
-  resolver.zod(UpdateHomeImageDescriptionSchema),
+  resolver.zod(UpdateGalleryPictureDescriptionSchema),
   async ({ id, description }) => {
     return db.homeImage.update({
       data: {

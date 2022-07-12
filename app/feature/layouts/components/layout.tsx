@@ -44,6 +44,9 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
     <TrussLink href="/meeting-minutes" key="meeting-minutes">
       Meeting Minutes
     </TrussLink>,
+    <TrussLink href="/gallery" key="gallery">
+      Pictures
+    </TrussLink>,
   ];
 
   const SecondaryItems = [

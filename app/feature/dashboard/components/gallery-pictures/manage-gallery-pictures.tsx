@@ -4,21 +4,21 @@ import { Image, useRouter } from 'blitz';
 import utilityStyles from '../../../../styles/util.module.css';
 import { Pagination } from '../../../util/pagination/components/pagination';
 import {
-  HOME_IMAGE_DASHBOARD_PAGE_SIZE,
-  useManageHomeImages,
-} from '../../hooks/home-images/use-manage-home-images';
+  GALLERY_PICTURE_DASHBOARD_PAGE_SIZE,
+  useManageGalleryPictures,
+} from '../../hooks/gallery-pictures/use-manage-gallery-pictures';
 
-export const ManageHomeImages = (): JSX.Element => {
+export const ManageGalleryPictures = (): JSX.Element => {
   const router = useRouter();
 
   const {
-    handleDeleteHomeImage,
+    handleDeleteGalleryPicture,
     handleNavigateToUpsert,
-    homeImages,
+    galleryPictures,
     setSkip,
     skip,
     count,
-  } = useManageHomeImages();
+  } = useManageGalleryPictures();
 
   return (
     <div className={utilityStyles.CenterOnPage}>
@@ -29,7 +29,7 @@ export const ManageHomeImages = (): JSX.Element => {
             await handleNavigateToUpsert();
           }}
         >
-          Add New Home Image
+          Add New Gallery Picture
         </Button>
         <Button
           className="bg-accent-cool-dark"
@@ -41,8 +41,8 @@ export const ManageHomeImages = (): JSX.Element => {
           Go Back
         </Button>
       </ButtonGroup>
-      <div>
-        {homeImages.map(image => {
+      <div style={{ margin: '32px 0' }}>
+        {galleryPictures.map(image => {
           return (
             <div key={image.id}>
               <div
@@ -73,7 +73,7 @@ export const ManageHomeImages = (): JSX.Element => {
                   className="bg-error"
                   type="button"
                   onClick={async (): Promise<void> => {
-                    await handleDeleteHomeImage(image.id);
+                    await handleDeleteGalleryPicture(image.id);
                   }}
                 >
                   Delete
@@ -84,7 +84,7 @@ export const ManageHomeImages = (): JSX.Element => {
         })}
       </div>
       <Pagination
-        pageLength={HOME_IMAGE_DASHBOARD_PAGE_SIZE}
+        pageLength={GALLERY_PICTURE_DASHBOARD_PAGE_SIZE}
         setSkip={setSkip}
         skip={skip}
         totalCount={count}

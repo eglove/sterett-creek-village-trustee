@@ -6,17 +6,17 @@ import { ZodError } from 'zod';
 
 import { getZodFieldErrors } from '../../../../util/zod';
 import { CLOUDINARY_PRESET, CLOUDINARY_URL } from '../../constants';
-import createHomeImage from '../../mutations/home-images/create-home-image';
-import updateHomeImageDescription from '../../mutations/home-images/update-home-image-description';
-import getHomeImage from '../../queries/home-images/get-home-image';
+import createGalleryPicture from '../../mutations/gallery-pictures/create-gallery-picture';
+import updateGalleryPictureDescription from '../../mutations/gallery-pictures/update-gallery-picture-description';
+import getGalleryPicture from '../../queries/gallery-pictures/get-gallery-picture';
 import { CloudinaryImage } from '../../types';
 import {
-  CreateHomeImageSchema,
-  UpdateHomeImageDescriptionSchema,
-} from '../../validations/home-image/home-image-validations';
+  CreateGalleryPictureSchema,
+  UpdateGalleryPictureDescriptionSchema,
+} from '../../validations/gallery-picture/gallery-picture-validations';
 
-export interface UpsertHomeImagesProperties {
-  homeImageId?: string;
+export interface UpsertGalleryPicturesProperties {
+  galleryPictureId?: string;
 }
 
 type InitialState = {
@@ -29,7 +29,7 @@ const initialState: InitialState = {
   file: undefined,
 };
 
-export type UseUpsertHomeImagesReturn = {
+export type UseUpsertGalleryPicturesReturn = {
   fieldErrors: Record<keyof InitialState, string[] | undefined> | undefined;
   formError: string | undefined;
   formState: InitialState;
@@ -38,21 +38,23 @@ export type UseUpsertHomeImagesReturn = {
   isLoading: boolean;
 };
 
-export const useUpsertHomeImages = ({
-  homeImageId,
-}: UpsertHomeImagesProperties): UseUpsertHomeImagesReturn => {
+export const useUpsertGalleryPictures = ({
+  galleryPictureId,
+}: UpsertGalleryPicturesProperties): UseUpsertGalleryPicturesReturn => {
   const router = useRouter();
 
-  const [imageToUpdate] = useQuery(getHomeImage, { id: homeImageId });
-  const [createHomeImageMutation, { isLoading: isCreateLoading }] =
-    useMutation(createHomeImage);
-  const [updateHomeImageDescriptionMutation, { isLoading: isUpdateLoading }] =
-    useMutation(updateHomeImageDescription);
+  const [imageToUpdate] = useQuery(getGalleryPicture, { id: galleryPictureId });
+  const [createGalleryPictureMutation, { isLoading: isCreateLoading }] =
+    useMutation(createGalleryPicture);
+  const [
+    updateGalleryPictureDescriptionMutation,
+    { isLoading: isUpdateLoading },
+  ] = useMutation(updateGalleryPictureDescription);
 
-  const handleUpsertHomeImage = async (): Promise<void> => {
+  const handleUpsertGalleryPicture = async (): Promise<void> => {
     try {
       if (
-        typeof homeImageId === 'undefined' &&
+        typeof galleryPictureId === 'undefined' &&
         typeof formState.file !== 'undefined'
       ) {
         const fileData = new FormData();
@@ -66,8 +68,8 @@ export const useUpsertHomeImages = ({
         });
         const data = (await response.json()) as CloudinaryImage;
 
-        await createHomeImageMutation(
-          CreateHomeImageSchema.parse({
+        await createGalleryPictureMutation(
+          CreateGalleryPictureSchema.parse({
             cloudinaryId: data.public_id,
             description: formState.description,
             height: data.height,
@@ -76,17 +78,17 @@ export const useUpsertHomeImages = ({
           })
         );
       } else {
-        await updateHomeImageDescriptionMutation(
-          UpdateHomeImageDescriptionSchema.parse({
+        await updateGalleryPictureDescriptionMutation(
+          UpdateGalleryPictureDescriptionSchema.parse({
             description: formState.description,
-            id: homeImageId,
+            id: galleryPictureId,
           })
         );
       }
 
       clearFieldErrors();
       setFormError(undefined);
-      await router.push('/dashboard/home-images');
+      await router.push('/dashboard/gallery-pictures');
     } catch (error: unknown) {
       if (error instanceof ZodError) {
         setFieldErrors(getZodFieldErrors(error, formState));
@@ -107,7 +109,7 @@ export const useUpsertHomeImages = ({
     setFormError,
     setFormState,
   } = useForm(initialState, {
-    onSubmit: handleUpsertHomeImage,
+    onSubmit: handleUpsertGalleryPicture,
   });
 
   useEffect(() => {

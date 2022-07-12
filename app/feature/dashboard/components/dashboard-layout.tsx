@@ -13,18 +13,10 @@ export const DashboardLayout = (): JSX.Element => {
         <Button
           type="button"
           onClick={async (): Promise<void> => {
-            await router.push('/dashboard/home-images');
-          }}
-        >
-          Home Images
-        </Button>
-        <Button
-          type="button"
-          onClick={async (): Promise<void> => {
             await router.push('/dashboard/events');
           }}
         >
-          Events
+          Calendar Events
         </Button>
         <Button
           type="button"
@@ -41,6 +33,22 @@ export const DashboardLayout = (): JSX.Element => {
           }}
         >
           Meeting Minutes
+        </Button>
+        <Button
+          type="button"
+          onClick={async (): Promise<void> => {
+            await router.push('/dashboard/gallery-pictures');
+          }}
+        >
+          Gallery Pictures
+        </Button>
+        <Button
+          type="button"
+          onClick={async (): Promise<void> => {
+            await router.push('/dashboard/trustees');
+          }}
+        >
+          Trustees
         </Button>
       </ButtonGroup>
     </div>

@@ -6,13 +6,13 @@ import { TrussFileInput } from '../../../trussworks/truss-form/truss-file-input'
 import { TrussForm } from '../../../trussworks/truss-form/truss-form';
 import { TrussTextInput } from '../../../trussworks/truss-form/truss-text-input';
 import {
-  UpsertHomeImagesProperties,
-  useUpsertHomeImages,
-} from '../../hooks/home-images/use-upsert-home-images';
+  UpsertGalleryPicturesProperties,
+  useUpsertGalleryPictures,
+} from '../../hooks/gallery-pictures/use-upsert-gallery-pictures';
 
-export const UpsertHomeImagesForm = ({
-  homeImageId,
-}: UpsertHomeImagesProperties): JSX.Element => {
+export const UpsertGalleryPicturesForm = ({
+  galleryPictureId,
+}: UpsertGalleryPicturesProperties): JSX.Element => {
   const router = useRouter();
 
   const {
@@ -22,7 +22,7 @@ export const UpsertHomeImagesForm = ({
     isLoading,
     fieldErrors,
     formError,
-  } = useUpsertHomeImages({ homeImageId });
+  } = useUpsertGalleryPictures({ galleryPictureId });
 
   return (
     <div className={utilityStyles.CenterOnPage}>
@@ -30,8 +30,8 @@ export const UpsertHomeImagesForm = ({
         disabled={isLoading}
         errorMessage={formError}
         legend={`${
-          typeof homeImageId === 'undefined' ? 'Create' : 'Update'
-        } Home Image`}
+          typeof galleryPictureId === 'undefined' ? 'Add' : 'Update'
+        } Gallery Picture`}
         onSubmit={handleSubmit}
       >
         <TrussTextInput
@@ -42,7 +42,7 @@ export const UpsertHomeImagesForm = ({
           value={formState.description}
           onChange={handleInputChange}
         />
-        {typeof homeImageId === 'undefined' && (
+        {typeof galleryPictureId === 'undefined' && (
           <TrussFileInput
             required
             errorMessages={fieldErrors?.file}
@@ -53,13 +53,13 @@ export const UpsertHomeImagesForm = ({
         )}
         <ButtonGroup>
           <Button type="submit">
-            {typeof homeImageId === 'undefined' ? 'Create' : 'Update'}
+            {typeof galleryPictureId === 'undefined' ? 'Create' : 'Update'}
           </Button>
           <Button
             className="bg-accent-cool-dark"
             type="button"
             onClick={async (): Promise<void> => {
-              await router.push('/dashboard/home-images');
+              await router.push('/dashboard/gallery-pictures');
             }}
           >
             Go Back

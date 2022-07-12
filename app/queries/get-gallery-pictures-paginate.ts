@@ -8,7 +8,7 @@ export default resolver.pipe(
   async ({ take, skip }) => {
     const count = db.homeImage.count();
 
-    const homeImages = db.homeImage.findMany({
+    const galleryPictures = db.homeImage.findMany({
       orderBy: {
         updatedAt: 'desc',
       },
@@ -23,11 +23,11 @@ export default resolver.pipe(
       take,
     });
 
-    const resolved = await Promise.all([count, homeImages]);
+    const resolved = await Promise.all([count, galleryPictures]);
 
     return {
       count: resolved[0],
-      homeImages: resolved[1],
+      galleryPictures: resolved[1],
     };
   }
 );

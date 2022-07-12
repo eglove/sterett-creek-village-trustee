@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-export const UpdateHomeImageDescriptionSchema = z.object({
+export const UpdateGalleryPictureDescriptionSchema = z.object({
   description: z.string(),
   id: z.string().uuid(),
 });
 
-export const CreateHomeImageSchema = z.object({
+export const CreateGalleryPictureSchema = z.object({
   cloudinaryId: z.string(),
   description: z.string(),
   height: z.number(),
