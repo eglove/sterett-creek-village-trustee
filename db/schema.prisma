@@ -69,6 +69,19 @@ model HomeImage {
   cloudinaryId String
 }
 
+model Image {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  description  String
+  url          String
+  height       Float
+  width        Float
+  cloudinaryId String
+
+  trustees Trustee[]
+}
+
 model MeetingMinute {
   id           String   @id @default(uuid())
   createdAt    DateTime @default(now())
@@ -93,6 +106,20 @@ model Session {
   userId             String?
 
   user User? @relation(fields: [userId], references: [id])
+}
+
+model Trustee {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  firstName   String
+  lastName    String
+  phoneNumber String
+  duties      String[]
+  imageId     String
+  order       Int      @unique
+
+  image Image @relation(fields: [imageId], references: [id])
 }
 
 model Token {

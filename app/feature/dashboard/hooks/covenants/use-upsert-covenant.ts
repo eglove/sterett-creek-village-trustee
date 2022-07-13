@@ -102,7 +102,7 @@ export const useUpsertCovenant = ({
       setFormState(formState_ => {
         return {
           ...formState_,
-          title: updateCovenant.title,
+          title: updateCovenant.fileName,
         };
       });
     }

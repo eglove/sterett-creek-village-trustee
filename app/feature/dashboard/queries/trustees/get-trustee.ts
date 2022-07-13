@@ -11,10 +11,13 @@ export default resolver.pipe(
       return null;
     }
 
-    return db.file.findUnique({
+    return db.trustee.findUnique({
       select: {
-        fileName: true,
+        duties: true,
+        firstName: true,
         id: true,
+        lastName: true,
+        phoneNumber: true,
       },
       where: {
         id,

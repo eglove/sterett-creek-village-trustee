@@ -11,7 +11,7 @@ interface TrussTextInputProperties {
   errorMessages?: string[];
   inputProperties?: Partial<TextInputProps> &
     Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>;
-  label: string;
+  label: string | JSX.Element | JSX.Element[];
   labelProperties?: LabelHTMLAttributes<HTMLLabelElement>;
   name: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;

@@ -1550,10 +1550,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@ethang/react@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@ethang/react/-/react-0.0.10.tgz#4141f4851f5840dbfefc59d3133932e0d8bbcb3b"
-  integrity sha512-kcbDEUGudMtv5yG7H33vmU6+gotpHLFCJ8wKL8VoDCmzbbFS81ByLb+17DZYK4dE/csSf9dXew94ZYueMzpCfg==
+"@ethang/react@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@ethang/react/-/react-0.0.13.tgz#cbbb7458f15567bf1e1406e0b96ada66fb302b8b"
+  integrity sha512-hcuATh5GZfEFHybK1uYB0coJ3AoeYwBKLFtyfEzyon5YlwhEndW/OTH0e0Ct712rT6M4xGrIYFHed+mEFUP04g==
 
 "@ethang/utilities@latest":
   version "0.0.9"
