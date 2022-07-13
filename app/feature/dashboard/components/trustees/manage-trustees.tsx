@@ -56,14 +56,20 @@ export const ManageTrustees = (): JSX.Element => {
                 <CardHeader>
                   {trustee.firstName} {trustee.lastName}
                 </CardHeader>
-                <CardMedia style={{ width: '300px' }}>
-                  <Image
-                    alt={trustee.image.description}
-                    height={trustee.image.height}
-                    layout="responsive"
-                    src={trustee.image.url}
-                    width={trustee.image.width}
-                  />
+                <CardMedia>
+                  <div
+                    style={{
+                      height: '300px',
+                      width: '300px',
+                    }}
+                  >
+                    <Image
+                      alt={trustee.image.description}
+                      layout="fill"
+                      objectFit="contain"
+                      src={trustee.image.url}
+                    />
+                  </div>
                 </CardMedia>
                 <CardBody>{formatPhoneNumber(trustee.phoneNumber)}</CardBody>
                 <CardBody>{formatList(trustee.duties)}</CardBody>
