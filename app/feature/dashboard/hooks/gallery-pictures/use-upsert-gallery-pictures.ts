@@ -1,15 +1,13 @@
 import { useForm } from '@ethang/react';
-import { HTTP_METHOD } from '@ethang/utilities';
 import { useMutation, useQuery, useRouter } from 'blitz';
 import { ChangeEvent, FormEvent, useEffect } from 'react';
 import { ZodError } from 'zod';
 
 import { getZodFieldErrors } from '../../../../util/zod';
-import { CLOUDINARY_PRESET, CLOUDINARY_URL } from '../../constants';
+import { cloudinaryUpload } from '../../../util/cloudinary-upload';
 import createGalleryPicture from '../../mutations/gallery-pictures/create-gallery-picture';
 import updateGalleryPictureDescription from '../../mutations/gallery-pictures/update-gallery-picture-description';
 import getGalleryPicture from '../../queries/gallery-pictures/get-gallery-picture';
-import { CloudinaryImage } from '../../types';
 import {
   CreateGalleryPictureSchema,
   UpdateGalleryPictureDescriptionSchema,
@@ -57,16 +55,7 @@ export const useUpsertGalleryPictures = ({
         typeof galleryPictureId === 'undefined' &&
         typeof formState.file !== 'undefined'
       ) {
-        const fileData = new FormData();
-        fileData.append('file', formState.file);
-        fileData.append('upload_preset', CLOUDINARY_PRESET.HOME_IMAGE);
-
-        // TODO create image upload server side REST endpoint
-        const response = await fetch(CLOUDINARY_URL.IMAGE_UPLOAD, {
-          body: fileData,
-          method: HTTP_METHOD.POST,
-        });
-        const data = (await response.json()) as CloudinaryImage;
+        const data = await cloudinaryUpload(formState.file, 'HOME_IMAGE');
 
         await createGalleryPictureMutation(
           CreateGalleryPictureSchema.parse({

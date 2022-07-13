@@ -4,11 +4,12 @@ import db from 'db';
 export default resolver.pipe(async () => {
   return db.trustee.findMany({
     orderBy: {
-      order: 'desc',
+      order: 'asc',
     },
     select: {
       duties: true,
       firstName: true,
+      id: true,
       image: {
         select: {
           description: true,
@@ -18,6 +19,7 @@ export default resolver.pipe(async () => {
         },
       },
       lastName: true,
+      order: true,
       phoneNumber: true,
     },
   });

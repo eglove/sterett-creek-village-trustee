@@ -1,16 +1,10 @@
 export const CLOUDINARY_PRESET = {
-  COVENANT:
-    process.env.NODE_ENV === 'development'
-      ? 'sterett-covenants-test'
-      : 'sterett-covenants',
   HOME_IMAGE:
     process.env.NODE_ENV === 'development'
       ? 'sterett-home-images-test'
       : 'sterett-home-images',
-  MEETING_MINUTES:
-    process.env.NODE_ENV === 'development'
-      ? 'sterett-meeting-minutes-test'
-      : 'sterett-meeting-minutes',
+  TRUSTEES:
+    process.env.NODE_ENV === 'development' ? 'trustees-test' : 'trustees',
 };
 
 export const CLOUDINARY_URL = {
