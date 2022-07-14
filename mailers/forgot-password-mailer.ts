@@ -1,4 +1,5 @@
-import postmark from 'postmark';
+import { HTTP_METHOD, JSON_HEADER } from '@ethang/utilities';
+import fetch from 'cross-fetch';
 
 type ResetPasswordMailer = {
   to: string;
@@ -21,18 +22,21 @@ export const forgotPasswordMailer = ({
 
   return {
     async send(): Promise<void> {
-      const client = new postmark.ServerClient(
-        process.env.POSTMARK_TOKEN ?? ''
-      );
-
-      await client.sendEmail({
-        From: process.env.POSTMARK_ADMIN_EMAIL ?? '',
-        HtmlBody: `<h1>Reset Your Password</h1><p><a href="${resetUrl}">Click here to set a new password.</a></p>`,
-        MessageStream: 'outbound',
-        Subject:
-          'Sterett Creek Village Trustee - Your Password Reset Instructions',
-        TextBody: `Visit this link to set a new password: ${resetUrl}`,
-        To: to,
+      await fetch('https://api.postmarkapp.com/email', {
+        body: JSON.stringify({
+          From: process.env.POSTMARK_ADMIN_EMAIL ?? '',
+          HtmlBody: `<h1>Reset Your Password</h1><p><a href="${resetUrl}">Click here to set a new password.</a></p>`,
+          MessageStream: 'outbound',
+          Subject:
+            'Sterett Creek Village Trustee - Your Password Reset Instructions',
+          TextBody: `Visit this link to set a new password: ${resetUrl}`,
+          To: to,
+        }),
+        headers: {
+          ...JSON_HEADER,
+          'X-Postmark-Server-Token': process.env.POSTMARK_TOKEN ?? '',
+        },
+        method: HTTP_METHOD.POST,
       });
     },
   };

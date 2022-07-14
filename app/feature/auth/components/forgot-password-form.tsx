@@ -18,7 +18,7 @@ export const ForgotPasswordForm = (): JSX.Element => {
 
   if (isSuccess) {
     return (
-      <div>
+      <div className={utilityStyles.CenterOnPage}>
         <h2>Request submitted</h2>
         <p>
           If your email is in our system, you will receive instructions to reset

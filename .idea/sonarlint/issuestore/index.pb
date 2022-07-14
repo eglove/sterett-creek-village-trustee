@@ -31,14 +31,10 @@ O
 app/feature/auth/validations.ts,2\6\26b324da1334732718c4254ef2766407bc59fa17
 Y
 )app/feature/auth/pages/reset-password.tsx,7\c\7cbc84597cedba09e4bca20b1f3a0c657fb6a30a
-]
--app/feature/auth/mutations/forgot-password.ts,d\2\d28b3ecb4727e3bbe586dc4c790e89c67c78c4f9
 \
 ,app/feature/auth/mutations/reset-password.ts,8\2\8249ef394778ca8ea475b48888789fd950f60920
 Z
 *app/feature/auth/pages/forgot-password.tsx,9\b\9b4042dd2a133683f98989e35e9aadd8ba419307
-Q
-!mailers/forgot-password-mailer.ts,3\8\385b235c87b9ae5744a6d2ff805bbb67c2297b8f
 W
 'app/feature/core/components/loading.tsx,1\6\16e54e51f8a168eaa3f903732c51850c22ce1b68
 a
@@ -53,8 +49,6 @@ B
 Papp/feature/dashboard/validations/meeting-minutes/meeting-minutes-validations.ts,9\3\9379c579166252969f84d0ee5ecc9d3c473a5b35
 ?
 app/util/zod.ts,a\d\ad03a45023822ad025881a9036e3782b0e4886c3
-b
-2app/feature/auth/hooks/use-forgot-password-form.ts,0\2\02cfa33a63d7af0fd0545b1affd4c951734fd91a
 
 Oapp/feature/dashboard/components/meeting-minutes/upsert-meeting-minute-form.tsx,2\5\25063864f67b57f78cdd7a8f69671f7db919e194
 q
@@ -121,8 +115,6 @@ Y
 )app/feature/core/styles/styles.module.css,8\e\8eea18a27601c8bc0f6e44c74f514759eb9cfb87
 R
 "app/feature/dashboard/constants.ts,6\8\68a21fbd55185dadb2a00ad83c9ca68521395e95
-<
-package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 N
 app/feature/dashboard/types.ts,d\5\d599cb478b73a6d695fd8abf7f7351d444cd2c20
 L
