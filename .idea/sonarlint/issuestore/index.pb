@@ -61,8 +61,6 @@ Capp/feature/dashboard/queries/meeting-minutes/get-meeting-minute.ts,d\8\d8cd03
 .editorconfig,6\2\626a747c8694eaae66f2afb3d1a745b045782c70
 A
 .husky/pre-commit,a\b\ab6c0c74cc7cd7c8c8b24da380d18aa4667658ae
-?
-.husky/pre-push,5\9\593d8ffe7c61610f0e23c3534ef747eaf3466f44
 G
 app/pages/_document.tsx,9\b\9b88420dfcd62861be07b8ba7baf67b409410054
 e
