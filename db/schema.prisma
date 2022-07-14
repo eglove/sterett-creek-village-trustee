@@ -58,6 +58,16 @@ model File {
   bucket    String
 }
 
+model HomeContent {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+  imageId   String
+
+  image Image @relation(fields: [imageId], references: [id])
+}
+
 model HomeImage {
   id           String   @id @default(uuid())
   createdAt    DateTime @default(now())
@@ -77,9 +87,11 @@ model Image {
   url          String
   height       Float
   width        Float
-  cloudinaryId String
+  cloudinaryId String?
+  accessKey    String?
 
-  trustees Trustee[]
+  trustees    Trustee[]
+  HomeContent HomeContent[]
 }
 
 model MeetingMinute {

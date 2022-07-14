@@ -1,13 +1,13 @@
-import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { resolver } from 'blitz';
+import { Ctx, resolver } from 'blitz';
 import db from 'db';
 
 import { IdSchema } from '../validations';
+import deleteS3File from './delete-s3-file';
 
 export default resolver.pipe(
   resolver.authorize(),
   resolver.zod(IdSchema),
-  async ({ id }) => {
+  async ({ id }, ctx: Ctx) => {
     const file = await db.file.delete({
       select: {
         id: true,
@@ -18,20 +18,7 @@ export default resolver.pipe(
       },
     });
 
-    const client = new S3Client({
-      credentials: {
-        accessKeyId: process.env.S3_UPLOAD_KEY ?? '',
-        secretAccessKey: process.env.S3_UPLOAD_SECRET ?? '',
-      },
-      region: process.env.S3_UPLOAD_REGION ?? '',
-    });
-
-    const command = new DeleteObjectCommand({
-      Bucket: process.env.S3_UPLOAD_BUCKET ?? '',
-      Key: file.key,
-    });
-
-    await client.send(command);
+    await deleteS3File({ id: file.key }, ctx);
 
     return file;
   }

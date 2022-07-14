@@ -13,6 +13,14 @@ export const DashboardLayout = (): JSX.Element => {
         <Button
           type="button"
           onClick={async (): Promise<void> => {
+            await router.push('/dashboard/home');
+          }}
+        >
+          Home
+        </Button>
+        <Button
+          type="button"
+          onClick={async (): Promise<void> => {
             await router.push('/dashboard/events');
           }}
         >

@@ -2,7 +2,10 @@ import { BlitzConfig, sessionMiddleware, simpleRolesIsAuthorized } from 'blitz';
 
 const config: BlitzConfig = {
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: [
+      'res.cloudinary.com',
+      'sterett-creek-village-trustee-test.s3.us-east-2.amazonaws.com',
+    ],
   },
   middleware: [
     sessionMiddleware({
