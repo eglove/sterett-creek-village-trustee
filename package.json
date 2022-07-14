@@ -65,7 +65,7 @@
     "@typescript-eslint/parser": "5.30.6",
     "browserslist": "4.21.2",
     "browserslist-config-google": "3.0.1",
-    "eslint": "8.19.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-xo": "0.41.0",
     "eslint-config-xo-react": "0.27.0",
