@@ -1,4 +1,5 @@
 import { useQuery } from 'blitz';
+import { Image } from 'next/image';
 
 import getHomeContent from '../../../queries/get-home-content';
 import utilityStyles from '../../../styles/util.module.css';
@@ -12,8 +13,13 @@ export const HomeLayout = (): JSX.Element | null => {
 
   return (
     <div className={utilityStyles.CenterOnPage}>
-      <div style={{ width: '50%' }}>
-        <img alt={homeContent.image.description} src={homeContent.image.url} />
+      <div style={{ height: '300px', position: 'relative', width: '50%' }}>
+        <Image
+          alt={homeContent.image.description}
+          layout="fill"
+          objectFit="contain"
+          src={homeContent.image.url}
+        />
       </div>
       <p>{homeContent.content}</p>
     </div>

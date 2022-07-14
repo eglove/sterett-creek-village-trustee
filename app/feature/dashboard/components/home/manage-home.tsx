@@ -1,7 +1,6 @@
 import { useForm } from '@ethang/react';
 import { Button, ButtonGroup } from '@trussworks/react-uswds';
 import { useMutation, useQuery, useRouter } from 'blitz';
-import { useS3Upload } from 'next-s3-upload';
 import { ZodError } from 'zod';
 
 import getHomeContent from '../../../../queries/get-home-content';
@@ -10,10 +9,10 @@ import { getZodFieldErrors } from '../../../../util/zod';
 import { TrussFileInput } from '../../../trussworks/truss-form/truss-file-input';
 import { TrussForm } from '../../../trussworks/truss-form/truss-form';
 import { TrussTextArea } from '../../../trussworks/truss-form/truss-text-area';
+import { cloudinaryUpload } from '../../../util/cloudinary-upload';
 import updateHomePage from '../../mutations/home/update-home-page';
 
 export const ManageHome = (): JSX.Element => {
-  const { uploadToS3 } = useS3Upload();
   const router = useRouter();
 
   const [currentContent] = useQuery(getHomeContent, undefined, {
@@ -35,7 +34,6 @@ export const ManageHome = (): JSX.Element => {
   };
 
   const handleUpdateHomePage = async (): Promise<void> => {
-    let uploaded: { bucket: string; key: string; url: string } | null = null;
     if (typeof formState.homeImage === 'undefined') {
       await updateHomePageMutation({
         description: formState.missionStatement,
@@ -44,26 +42,18 @@ export const ManageHome = (): JSX.Element => {
 
       await router.push('/');
     } else {
-      const image = new Image();
-      uploaded = await uploadToS3(formState.homeImage);
+      const image = await cloudinaryUpload(formState.homeImage, 'MAIN_IMAGE');
 
-      const fileUrl = URL.createObjectURL(formState.homeImage);
-      image.onload = async (): Promise<void> => {
-        URL.revokeObjectURL(image.src);
+      await updateHomePageMutation({
+        cloudinaryId: image.public_id,
+        description: formState.missionStatement,
+        height: image.height,
+        missionStatement: formState.missionStatement,
+        url: image.secure_url,
+        width: image.width,
+      });
 
-        await updateHomePageMutation({
-          accessKey: uploaded?.key,
-          description: formState.missionStatement,
-          height: image.height,
-          missionStatement: formState.missionStatement,
-          url: uploaded?.url,
-          width: image.width,
-        });
-
-        await router.push('/');
-      };
-
-      image.src = fileUrl;
+      await router.push('/');
     }
   };
 
