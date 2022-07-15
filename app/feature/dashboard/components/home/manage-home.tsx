@@ -1,6 +1,7 @@
 import { useForm } from '@ethang/react';
 import { Button, ButtonGroup } from '@trussworks/react-uswds';
 import { useMutation, useQuery, useRouter } from 'blitz';
+import { Image } from 'next/image';
 import { ZodError } from 'zod';
 
 import getHomeContent from '../../../../queries/get-home-content';
@@ -81,9 +82,11 @@ export const ManageHome = (): JSX.Element => {
           <div
             style={{ display: 'grid', placeItems: 'center', width: '300px' }}
           >
-            <img
+            <Image
               alt={currentContent.image.description}
-              src="https://sterett-creek-village-trustee-test.s3.us-east-2.amazonaws.com/next-s3-uploads/7b5532af-a21a-4165-a46a-3c3cb3145e5c/rs%253Dw_1240%252Ch_620%252Ccg_true.png"
+              layout="fill"
+              objectFit="contain"
+              src={currentContent.image.url}
             />
           </div>
         )}
