@@ -79,9 +79,7 @@ export const ManageHome = (): JSX.Element => {
         onSubmit={handleSubmit}
       >
         {currentContent !== null && (
-          <div
-            style={{ display: 'grid', placeItems: 'center', width: '300px' }}
-          >
+          <div style={{ height: '300px', position: 'relative', width: '100%' }}>
             <Image
               alt={currentContent.image.description}
               layout="fill"
