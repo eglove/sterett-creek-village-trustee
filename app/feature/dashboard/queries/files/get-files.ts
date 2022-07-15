@@ -1,12 +1,17 @@
 import { resolver } from 'blitz';
 import db from 'db';
+import { z } from 'zod';
 
-import { PaginateSchema } from '../validations';
+const GetFileSChema = z.object({
+  fileType: z.enum(['COVENANTS', 'MEETING_MINUTES']),
+  skip: z.number(),
+  take: z.number(),
+});
 
 export default resolver.pipe(
-  resolver.zod(PaginateSchema),
-  async ({ take, skip }) => {
-    const count = db.file.count({ where: { fileType: 'MEETING_MINUTES' } });
+  resolver.zod(GetFileSChema),
+  async ({ take, skip, fileType }) => {
+    const count = db.file.count({ where: { fileType } });
 
     const files = db.file.findMany({
       orderBy: {
@@ -20,7 +25,7 @@ export default resolver.pipe(
       skip,
       take,
       where: {
-        fileType: 'MEETING_MINUTES',
+        fileType,
       },
     });
 

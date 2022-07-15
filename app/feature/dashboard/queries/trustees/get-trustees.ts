@@ -1,5 +1,13 @@
+import { Image, Trustee } from '@prisma/client';
 import { resolver } from 'blitz';
 import db from 'db';
+
+export type GetTrustee = Pick<
+  Trustee,
+  'duties' | 'firstName' | 'id' | 'lastName' | 'order' | 'phoneNumber'
+> & {
+  image: Pick<Image, 'description' | 'height' | 'width' | 'url'>;
+};
 
 export default resolver.pipe(async () => {
   return db.trustee.findMany({

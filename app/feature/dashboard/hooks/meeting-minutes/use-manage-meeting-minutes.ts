@@ -3,8 +3,8 @@ import { useMutation, useQuery, useRouter } from 'blitz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import deleteFile from '../../../../mutations/delete-file';
-import getMeetingMinutes from '../../../../queries/get-meeting-minutes';
 import { IdSchema } from '../../../../validations';
+import getFiles from '../../queries/files/get-files';
 
 type UseManageMeetingMinutesReturn = {
   count: number;
@@ -22,7 +22,8 @@ export const useManageMeetingMinutes = (): UseManageMeetingMinutesReturn => {
   const router = useRouter();
   const [skip, setSkip] = useState(0);
 
-  const [data, { refetch }] = useQuery(getMeetingMinutes, {
+  const [data, { refetch }] = useQuery(getFiles, {
+    fileType: 'MEETING_MINUTES',
     skip,
     take: MEETING_MINUTES_DASHBOARD_PAGE_SIZE,
   });

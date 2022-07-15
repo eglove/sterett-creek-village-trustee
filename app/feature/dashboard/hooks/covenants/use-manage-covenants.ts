@@ -3,8 +3,8 @@ import { useMutation, useQuery, useRouter } from 'blitz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import deleteFile from '../../../../mutations/delete-file';
-import getCovenants from '../../../../queries/get-covenants';
 import { IdSchema } from '../../../../validations';
+import getFiles from '../../queries/files/get-files';
 
 type UseManageCovenantsReturn = {
   count: number;
@@ -22,7 +22,8 @@ export const useManageCovenants = (): UseManageCovenantsReturn => {
   const router = useRouter();
   const [skip, setSkip] = useState(0);
 
-  const [data, { refetch }] = useQuery(getCovenants, {
+  const [data, { refetch }] = useQuery(getFiles, {
+    fileType: 'COVENANTS',
     skip,
     take: COVENANTS_DASHBOARD_PAGE_SIZE,
   });

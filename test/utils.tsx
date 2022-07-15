@@ -1,5 +1,4 @@
 import { render as defaultRender, RenderResult } from '@testing-library/react';
-import { renderHook as defaultRenderHook } from '@testing-library/react-hooks';
 import { BlitzProvider, BlitzRouter, RouterContext } from 'blitz';
 
 export * from '@testing-library/react';
@@ -45,39 +44,6 @@ export const render = (
   return defaultRender(ui, { wrapper, ...options });
 };
 
-// --------------------------------------------------
-// renderHook()
-// --------------------------------------------------
-// Override the default test renderHook with our own
-//
-// You can override the router mock like this:
-//
-// const result = renderHook(() => myHook(), {
-//   router: { pathname: '/my-custom-pathname' },
-// });
-// --------------------------------------------------
-export const renderHook = (
-  hook: RenderHook,
-  { wrapper, router, dehydratedState, ...options }: RenderHookOptions = {}
-): ReturnType<typeof defaultRenderHook> => {
-  if (!wrapper) {
-    // Add a default context wrapper if one isn't supplied from the test
-    // eslint-disable-next-line sonarjs/no-identical-functions
-    wrapper = ({ children }): JSX.Element => {
-      return (
-        <BlitzProvider dehydratedState={dehydratedState}>
-          {/* eslint-disable-next-line react/jsx-no-constructed-context-values */}
-          <RouterContext.Provider value={{ ...mockRouter, ...router }}>
-            {children}
-          </RouterContext.Provider>
-        </BlitzProvider>
-      );
-    };
-  }
-
-  return defaultRenderHook(hook, { wrapper, ...options });
-};
-
 export const mockRouter: BlitzRouter = {
   asPath: '/',
   back: jest.fn(),
@@ -105,13 +71,6 @@ export const mockRouter: BlitzRouter = {
 type DefaultParams = Parameters<typeof defaultRender>;
 type RenderUI = DefaultParams[0];
 type RenderOptions = DefaultParams[1] & {
-  dehydratedState?: unknown;
-  router?: Partial<BlitzRouter>;
-};
-
-type DefaultHookParams = Parameters<typeof defaultRenderHook>;
-type RenderHook = DefaultHookParams[0];
-type RenderHookOptions = DefaultHookParams[1] & {
   dehydratedState?: unknown;
   router?: Partial<BlitzRouter>;
 };
