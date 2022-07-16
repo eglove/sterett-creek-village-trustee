@@ -1,13 +1,13 @@
 import { Button, ButtonGroup } from '@trussworks/react-uswds';
 import { useRouter } from 'blitz';
 
-import utilityStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 
 export const DashboardLayout = (): JSX.Element => {
   const router = useRouter();
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <h2>Admin Dashboard</h2>
       <ButtonGroup>
         <Button
@@ -59,6 +59,6 @@ export const DashboardLayout = (): JSX.Element => {
           Trustees
         </Button>
       </ButtonGroup>
-    </div>
+    </Container>
   );
 };

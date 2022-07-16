@@ -10,7 +10,7 @@ import { format, getDay, parse, startOfWeek } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 
-import utilStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 import { useCalendar } from '../hooks/use-calendar';
 
 const locales = {
@@ -42,7 +42,7 @@ export const CalendarLayout = (): JSX.Element | null => {
   }
 
   return (
-    <div className={utilStyles.CenterOnPage}>
+    <Container>
       <Calendar
         selectable
         defaultView="week"
@@ -70,6 +70,6 @@ export const CalendarLayout = (): JSX.Element | null => {
           </ModalToggleButton>
         </ModalFooter>
       </Modal>
-    </div>
+    </Container>
   );
 };

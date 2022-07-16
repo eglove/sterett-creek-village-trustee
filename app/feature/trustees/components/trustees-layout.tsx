@@ -1,7 +1,7 @@
 import { Card, CardGroup } from '@trussworks/react-uswds';
 import { useQuery } from 'blitz';
 
-import utilityStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 import getTrustees from '../../dashboard/queries/trustees/get-trustees';
 import { TrusteeCard } from './trustee-card';
 
@@ -10,14 +10,14 @@ export const TrusteesLayout = (): JSX.Element => {
 
   if (trustees.length < 1) {
     return (
-      <p className={utilityStyles.CenterOnPage}>
-        There&apos;s nothing here yet. Check back later.
-      </p>
+      <Container>
+        <p>There&apos;s nothing here yet. Check back later.</p>
+      </Container>
     );
   }
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <CardGroup>
         {trustees.map(trustee => {
           return (
@@ -29,6 +29,6 @@ export const TrusteesLayout = (): JSX.Element => {
           );
         })}
       </CardGroup>
-    </div>
+    </Container>
   );
 };

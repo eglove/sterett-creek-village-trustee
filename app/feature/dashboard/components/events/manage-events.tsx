@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from '@trussworks/react-uswds';
 import { useRouter } from 'blitz';
 
-import utilityStyles from '../../../../styles/util.module.css';
+import { Container } from '../../../core/components/container';
 import { Pagination } from '../../../util/pagination/components/pagination';
 import {
   EVENTS_PAGE_SIZE,
@@ -22,11 +22,7 @@ export const ManageEvents = (): JSX.Element => {
   } = useManageEvents();
 
   return (
-    <div
-      className={`${styles.EventContainer ?? ''} ${
-        utilityStyles.CenterOnPage ?? ''
-      }`}
-    >
+    <Container>
       <ButtonGroup>
         <Button
           type="button"
@@ -47,41 +43,43 @@ export const ManageEvents = (): JSX.Element => {
         </Button>
       </ButtonGroup>
       <div style={{ marginBottom: '32px' }} />
-      {events.map(event => {
-        return (
-          <div key={event.id}>
-            <h2>{event.title}</h2>
-            <div className={styles.EventTimes}>
-              {event.startsAt.toLocaleString()} -{' '}
-              {event.endsAt.toLocaleString()}
+      <>
+        {events.map(event => {
+          return (
+            <div key={event.id}>
+              <h2>{event.title}</h2>
+              <div className={styles.EventTimes}>
+                {event.startsAt.toLocaleString()} -{' '}
+                {event.endsAt.toLocaleString()}
+              </div>
+              <p className="usa-prose" style={{ overflowWrap: 'anywhere' }}>
+                {event.description}
+              </p>
+              <ButtonGroup>
+                <Button
+                  className="bg-accent-warm"
+                  type="button"
+                  onClick={async (): Promise<void> => {
+                    await handleNavigateToUpsert(event.id);
+                  }}
+                >
+                  Update
+                </Button>
+                <Button
+                  className="bg-error"
+                  type="button"
+                  onClick={async (): Promise<void> => {
+                    await handleDeleteEvent(event.id);
+                  }}
+                >
+                  Delete
+                </Button>
+              </ButtonGroup>
+              <hr />
             </div>
-            <p className="usa-prose" style={{ overflowWrap: 'anywhere' }}>
-              {event.description}
-            </p>
-            <ButtonGroup>
-              <Button
-                className="bg-accent-warm"
-                type="button"
-                onClick={async (): Promise<void> => {
-                  await handleNavigateToUpsert(event.id);
-                }}
-              >
-                Update
-              </Button>
-              <Button
-                className="bg-error"
-                type="button"
-                onClick={async (): Promise<void> => {
-                  await handleDeleteEvent(event.id);
-                }}
-              >
-                Delete
-              </Button>
-            </ButtonGroup>
-            <hr />
-          </div>
-        );
-      })}
+          );
+        })}
+      </>
       <div style={{ marginTop: '32px' }} />
       <Pagination
         pageLength={EVENTS_PAGE_SIZE}
@@ -89,6 +87,6 @@ export const ManageEvents = (): JSX.Element => {
         skip={skip}
         totalCount={count}
       />
-    </div>
+    </Container>
   );
 };

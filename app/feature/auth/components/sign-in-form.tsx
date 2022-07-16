@@ -21,7 +21,7 @@ export const SignInForm = (parameters: SignInFormProperties): JSX.Element => {
   } = useSignInForm({ onSuccess: parameters.onSuccess });
 
   return (
-    <div className={utilStyles.CenterOnPage}>
+    <div className={utilStyles.NavigationContainer}>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}

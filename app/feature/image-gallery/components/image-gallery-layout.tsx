@@ -1,6 +1,7 @@
 import { Image, useQuery } from 'blitz';
 import Masonry from 'react-masonry-css';
 
+import { Container } from '../../core/components/container';
 import getGalleryPictures from '../queries/get-gallery-pictures';
 import styles from '../styles/image-gallery.module.css';
 
@@ -13,8 +14,16 @@ export const ImageGalleryLayout = (): JSX.Element => {
     refetchOnWindowFocus: false,
   });
 
+  if (images.length < 1) {
+    return (
+      <Container>
+        <p>There&apos;s nothing here yet. Check back later.</p>
+      </Container>
+    );
+  }
+
   return (
-    <div className={styles.HomeLayout}>
+    <Container>
       <Masonry
         className={styles.Masonry ?? ''}
         breakpointCols={{
@@ -44,6 +53,6 @@ export const ImageGalleryLayout = (): JSX.Element => {
           );
         })}
       </Masonry>
-    </div>
+    </Container>
   );
 };

@@ -8,7 +8,7 @@ import {
 } from '@trussworks/react-uswds';
 import { useRouter } from 'blitz';
 
-import utilityStyles from '../../../../styles/util.module.css';
+import { Container } from '../../../core/components/container';
 import { TrusteeCard } from '../../../trustees/components/trustee-card';
 import { useManageTrustees } from '../../hooks/trustees/use-manage-trustees';
 
@@ -24,7 +24,7 @@ export const ManageTrustees = (): JSX.Element => {
   } = useManageTrustees();
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <ButtonGroup>
         <Button
           type="button"
@@ -101,6 +101,6 @@ export const ManageTrustees = (): JSX.Element => {
           );
         })}
       </CardGroup>
-    </div>
+    </Container>
   );
 };

@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from '@trussworks/react-uswds';
 import { Image, useRouter } from 'blitz';
 
-import utilityStyles from '../../../../styles/util.module.css';
+import { Container } from '../../../core/components/container';
 import { Pagination } from '../../../util/pagination/components/pagination';
 import {
   GALLERY_PICTURE_DASHBOARD_PAGE_SIZE,
@@ -21,7 +21,7 @@ export const ManageGalleryPictures = (): JSX.Element => {
   } = useManageGalleryPictures();
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <ButtonGroup>
         <Button
           type="button"
@@ -89,6 +89,6 @@ export const ManageGalleryPictures = (): JSX.Element => {
         skip={skip}
         totalCount={count}
       />
-    </div>
+    </Container>
   );
 };

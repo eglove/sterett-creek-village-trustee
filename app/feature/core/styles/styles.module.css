@@ -1,3 +1,18 @@
+.Container {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 4px 6px 11px -1px hsl(0, 0%, 60%);
+  background-color: hsl(0, 0%, 99%);
+  border-radius: 20px;
+}
+
+.Container:hover,
+.Container:focus {
+  box-shadow: 4px 6px 11px -1px hsl(0, 0%, 65%);
+}
+
 .FileLinkContainer {
   display: grid;
   gap: 16px;

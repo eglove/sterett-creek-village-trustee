@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from '@trussworks/react-uswds';
 import { useRouter } from 'blitz';
 
-import utilityStyles from '../../../../styles/util.module.css';
+import { Container } from '../../../core/components/container';
 import coreStyles from '../../../core/styles/styles.module.css';
 import { TrussLink } from '../../../trussworks/truss-link/truss-link';
 import { Pagination } from '../../../util/pagination/components/pagination';
@@ -25,7 +25,7 @@ export const ManageMeetingMinutes = (): JSX.Element => {
   } = useManageMeetingMinutes();
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <ButtonGroup>
         <Button
           type="button"
@@ -83,6 +83,6 @@ export const ManageMeetingMinutes = (): JSX.Element => {
         skip={skip}
         totalCount={count}
       />
-    </div>
+    </Container>
   );
 };

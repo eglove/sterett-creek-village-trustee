@@ -1,7 +1,7 @@
 import { Button } from '@trussworks/react-uswds';
 import { Link } from 'blitz';
 
-import utilityStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 import { TrussForm } from '../../trussworks/truss-form/truss-form';
 import { TrussTextInput } from '../../trussworks/truss-form/truss-text-input';
 import { useResetPasswordForm } from '../hooks/use-reset-password-form';
@@ -19,17 +19,17 @@ export const ResetPasswordForm = (): JSX.Element => {
 
   if (isSuccess) {
     return (
-      <div className={utilityStyles.CenterOnPage}>
+      <Container>
         <h2>Password Reset Successfully</h2>
         <p>
           Go to the <Link href="/">homepage</Link>
         </p>
-      </div>
+      </Container>
     );
   }
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}
@@ -56,6 +56,6 @@ export const ResetPasswordForm = (): JSX.Element => {
         />
         <Button type="submit">Reset</Button>
       </TrussForm>
-    </div>
+    </Container>
   );
 };

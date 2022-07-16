@@ -1,13 +1,12 @@
 import { Image } from 'next/image';
 
 import loadingImage from '../../../../public/loading.svg';
-import utilityStyles from '../../../styles/util.module.css';
+import { Container } from './container';
 
 export const Loading = (): JSX.Element => {
   return (
-    <div
-      className={utilityStyles.CenterOnPage}
-      style={{ height: '300px', position: 'relative' }}
+    <Container
+      containerProperties={{ style: { height: '300px', position: 'relative' } }}
     >
       <Image
         alt="Loading"
@@ -15,6 +14,6 @@ export const Loading = (): JSX.Element => {
         objectFit="contain"
         src={loadingImage as string}
       />
-    </div>
+    </Container>
   );
 };

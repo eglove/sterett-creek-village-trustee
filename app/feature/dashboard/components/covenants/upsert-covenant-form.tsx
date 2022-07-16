@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from '@trussworks/react-uswds';
 import { useRouter } from 'blitz';
 
-import utilityStyles from '../../../../styles/util.module.css';
+import { Container } from '../../../core/components/container';
 import { TrussFileInput } from '../../../trussworks/truss-form/truss-file-input';
 import { TrussForm } from '../../../trussworks/truss-form/truss-form';
 import { TrussTextInput } from '../../../trussworks/truss-form/truss-text-input';
@@ -25,7 +25,7 @@ export const UpsertCovenantForm = (
   } = useUpsertCovenant(updateProperties);
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}
@@ -70,6 +70,6 @@ export const UpsertCovenantForm = (
           </Button>
         </ButtonGroup>
       </TrussForm>
-    </div>
+    </Container>
   );
 };

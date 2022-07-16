@@ -5,8 +5,8 @@ import { Image } from 'next/image';
 import { ZodError } from 'zod';
 
 import getHomeContent from '../../../../queries/get-home-content';
-import utilityStyles from '../../../../styles/util.module.css';
 import { getZodFieldErrors } from '../../../../util/zod';
+import { Container } from '../../../core/components/container';
 import { TrussFileInput } from '../../../trussworks/truss-form/truss-file-input';
 import { TrussForm } from '../../../trussworks/truss-form/truss-form';
 import { TrussTextArea } from '../../../trussworks/truss-form/truss-text-area';
@@ -71,7 +71,7 @@ export const ManageHome = (): JSX.Element => {
   });
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}
@@ -104,8 +104,17 @@ export const ManageHome = (): JSX.Element => {
         />
         <ButtonGroup>
           <Button type="submit">Update</Button>
+          <Button
+            className="bg-accent-cool-dark"
+            type="button"
+            onClick={async (): Promise<void> => {
+              await router.push('/dashboard');
+            }}
+          >
+            Go Back
+          </Button>
         </ButtonGroup>
       </TrussForm>
-    </div>
+    </Container>
   );
 };

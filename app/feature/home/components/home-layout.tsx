@@ -2,7 +2,7 @@ import { useQuery } from 'blitz';
 import { Image } from 'next/image';
 
 import getHomeContent from '../../../queries/get-home-content';
-import utilityStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 
 export const HomeLayout = (): JSX.Element | null => {
   const [homeContent] = useQuery(getHomeContent, undefined);
@@ -12,7 +12,7 @@ export const HomeLayout = (): JSX.Element | null => {
   }
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <div style={{ height: '300px', position: 'relative', width: '50%' }}>
         <Image
           alt={homeContent.image.description}
@@ -22,6 +22,6 @@ export const HomeLayout = (): JSX.Element | null => {
         />
       </div>
       <p>{homeContent.content}</p>
-    </div>
+    </Container>
   );
 };

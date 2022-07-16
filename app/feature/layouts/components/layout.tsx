@@ -7,6 +7,7 @@ import {
 import { BlitzLayout, Head, useMutation, useQuery } from 'blitz';
 import { useState } from 'react';
 
+import utilityStyles from '../../../styles/util.module.css';
 import signOut from '../../auth/mutations/sign-out';
 import getCurrentUser from '../../auth/queries/get-current-user';
 import { TrussLink } from '../../trussworks/truss-link/truss-link';
@@ -70,8 +71,7 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
   ];
 
   return (
-    <>
-      <div className={`usa-overlay ${expanded ? 'is-visible' : ''}`} />
+    <div className={utilityStyles.NavigationContainer}>
       <Head>
         <title>{title ?? 'Sterett Creek Village Trustee'}</title>
 
@@ -118,7 +118,7 @@ const Layout: BlitzLayout<{ children?: React.ReactNode; title?: string }> = ({
         />
       </Header>
       {children}
-    </>
+    </div>
   );
 };
 

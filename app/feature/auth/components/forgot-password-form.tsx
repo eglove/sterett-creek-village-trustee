@@ -1,6 +1,6 @@
 import { Button } from '@trussworks/react-uswds';
 
-import utilityStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 import { TrussForm } from '../../trussworks/truss-form/truss-form';
 import { TrussTextInput } from '../../trussworks/truss-form/truss-text-input';
 import { useForgotPasswordForm } from '../hooks/use-forgot-password-form';
@@ -18,18 +18,18 @@ export const ForgotPasswordForm = (): JSX.Element => {
 
   if (isSuccess) {
     return (
-      <div className={utilityStyles.CenterOnPage}>
+      <Container>
         <h2>Request submitted</h2>
         <p>
           If your email is in our system, you will receive instructions to reset
           your password shortly.
         </p>
-      </div>
+      </Container>
     );
   }
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}
@@ -47,6 +47,6 @@ export const ForgotPasswordForm = (): JSX.Element => {
         />
         <Button type="submit">Submit</Button>
       </TrussForm>
-    </div>
+    </Container>
   );
 };

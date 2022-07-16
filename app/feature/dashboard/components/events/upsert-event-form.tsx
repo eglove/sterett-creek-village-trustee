@@ -1,6 +1,6 @@
 import { Button, ButtonGroup } from '@trussworks/react-uswds';
 
-import utilStyles from '../../../../styles/util.module.css';
+import { Container } from '../../../core/components/container';
 import { DateTimePicker } from '../../../core/components/date-time-picker';
 import { TrussForm } from '../../../trussworks/truss-form/truss-form';
 import { TrussTextArea } from '../../../trussworks/truss-form/truss-text-area';
@@ -27,7 +27,7 @@ export const UpsertEventForm = (
   } = useUpsertEventForm(updateProperties);
 
   return (
-    <div className={utilStyles.CenterOnPage}>
+    <Container>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}
@@ -88,6 +88,6 @@ export const UpsertEventForm = (
           </Button>
         </ButtonGroup>
       </TrussForm>
-    </div>
+    </Container>
   );
 };

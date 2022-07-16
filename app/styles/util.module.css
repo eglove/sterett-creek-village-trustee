@@ -1,7 +1,19 @@
-.CenterOnPage {
+.NavigationContainer {
   display: grid;
-  place-items: center;
-  width: 100%;
+  grid-template-columns: auto;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.NavigationContainer header {
+  background-color: hsl(0, 0%, 99%);
+  border-radius: 20px;
+  box-shadow: 4px 6px 11px -1px hsl(0, 0%, 60%);
+}
+
+.NavigationContainer header:hover,
+.NavigationContainer header:focus {
+  box-shadow: 4px 6px 11px -1px hsl(0, 0%, 65%);
 }
 
 .CenterWithMargin {

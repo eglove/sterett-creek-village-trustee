@@ -33,5 +33,11 @@
   padding: 8px;
 }
 
+@media screen and (max-width: 768px) {
+  .DateTime {
+    grid-template-columns: auto;
+  }
+}
+
 
 

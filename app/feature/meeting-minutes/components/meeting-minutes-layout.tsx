@@ -1,4 +1,4 @@
-import utilityStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 import coreStyles from '../../core/styles/styles.module.css';
 import { TrussLink } from '../../trussworks/truss-link/truss-link';
 import { Pagination } from '../../util/pagination/components/pagination';
@@ -12,14 +12,14 @@ export const MeetingMinutesLayout = (): JSX.Element => {
 
   if (count === 0) {
     return (
-      <div className={utilityStyles.CenterOnPage}>
-        There&apos;s nothing here yet. Check back later.
-      </div>
+      <Container>
+        <p>There&apos;s nothing here yet. Check back later.</p>
+      </Container>
     );
   }
 
   return (
-    <div className={utilityStyles.CenterOnPage}>
+    <Container>
       <div className={coreStyles.FileLinkContainer}>
         {files.map(file => {
           return (
@@ -35,6 +35,6 @@ export const MeetingMinutesLayout = (): JSX.Element => {
         skip={skip}
         totalCount={count}
       />
-    </div>
+    </Container>
   );
 };

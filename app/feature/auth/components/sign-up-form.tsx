@@ -25,7 +25,7 @@ export const SignUpForm = ({
   });
 
   return (
-    <div className={utilStyles.CenterOnPage}>
+    <div className={utilStyles.NavigationContainer}>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}
