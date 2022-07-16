@@ -1,6 +1,6 @@
 import { Button } from '@trussworks/react-uswds';
 
-import utilStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 import { TrussForm } from '../../trussworks/truss-form/truss-form';
 import { TrussTextInput } from '../../trussworks/truss-form/truss-text-input';
 import { TrussLink } from '../../trussworks/truss-link/truss-link';
@@ -21,7 +21,7 @@ export const SignInForm = (parameters: SignInFormProperties): JSX.Element => {
   } = useSignInForm({ onSuccess: parameters.onSuccess });
 
   return (
-    <div className={utilStyles.NavigationContainer}>
+    <Container>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}
@@ -52,6 +52,6 @@ export const SignInForm = (parameters: SignInFormProperties): JSX.Element => {
           <TrussLink href="/forgot-password">Forgot Password?</TrussLink>
         </p>
       </TrussForm>
-    </div>
+    </Container>
   );
 };

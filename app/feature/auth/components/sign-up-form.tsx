@@ -1,6 +1,6 @@
 import { Button } from '@trussworks/react-uswds';
 
-import utilStyles from '../../../styles/util.module.css';
+import { Container } from '../../core/components/container';
 import { TrussForm } from '../../trussworks/truss-form/truss-form';
 import { TrussTextInput } from '../../trussworks/truss-form/truss-text-input';
 import { TrussLink } from '../../trussworks/truss-link/truss-link';
@@ -25,7 +25,7 @@ export const SignUpForm = ({
   });
 
   return (
-    <div className={utilStyles.NavigationContainer}>
+    <Container>
       <TrussForm
         disabled={isLoading}
         errorMessage={formError}
@@ -62,6 +62,6 @@ export const SignUpForm = ({
         />
         <Button type="submit">Sign Up</Button>
       </TrussForm>
-    </div>
+    </Container>
   );
 };
