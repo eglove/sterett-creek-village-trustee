@@ -4,7 +4,8 @@ services:
     env: node
     plan: starter
     buildCommand:
-      yarn &&
+      yarn --frozen-lockfile --prod=false &&
+      blitz prisma generate &&
       blitz build &&
       blitz prisma migrate deploy
     startCommand: blitz start
