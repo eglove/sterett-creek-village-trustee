@@ -12,7 +12,7 @@ export const TrusteeCard = ({
   trustee,
 }: TrusteesCardGroupProperties): JSX.Element => {
   return (
-    <>
+    <div style={{ width: '300px' }}>
       <CardHeader>
         {trustee.firstName} {trustee.lastName}
       </CardHeader>
@@ -33,6 +33,6 @@ export const TrusteeCard = ({
       </CardMedia>
       <CardBody>{formatPhoneNumber(trustee.phoneNumber)}</CardBody>
       <CardBody>{formatList(trustee.duties)}</CardBody>
-    </>
+    </div>
   );
 };
