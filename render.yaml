@@ -4,9 +4,9 @@ services:
     env: node
     plan: starter
     buildCommand:
-      yarn --frozen-lockfile --prod=false &&
+      yarn &&
       blitz build &&
-      blitz migrate deploy
+      blitz prisma migrate deploy
     startCommand: blitz start
     envVars:
       - key: NODE_ENV
