@@ -18,7 +18,7 @@ export const TrusteesLayout = (): JSX.Element => {
 
   return (
     <Container>
-      <CardGroup>
+      <CardGroup style={{ justifyContent: 'center' }}>
         {trustees.map(trustee => {
           return (
             <div key={trustee.id}>
