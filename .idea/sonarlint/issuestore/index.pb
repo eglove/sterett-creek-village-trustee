@@ -160,8 +160,6 @@ o
 ?app/feature/dashboard/components/covenants/manage-covenants.tsx,b\0\b06b253d133ab2b22300b6fa9b0256d38b1165f1
 i
 9app/feature/dashboard/components/events/manage-events.tsx,f\3\f3411ed3387c99abb5302dc9956d159d2bb757e7
-e
-5app/feature/dashboard/components/home/manage-home.tsx,8\1\8171e28378cf1a7cde800e2af15ee2b3a1ea7c9b
 {
 Kapp/feature/dashboard/components/meeting-minutes/manage-meeting-minutes.tsx,1\6\1663d6fe123c5a868cf09e3ecbfab2757bd4351c
 q

@@ -30,6 +30,7 @@
     "@ethang/react": "^0.0.13",
     "@ethang/utilities": "latest",
     "@prisma/client": "3.16.0-integration-tmp-revert-node14.1",
+    "@tinymce/tinymce-react": "4.1.0",
     "@trussworks/react-uswds": "^3.0.2",
     "blitz": "0.45.4",
     "cloudinary": "1.30.0",

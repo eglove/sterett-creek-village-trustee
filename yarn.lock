@@ -2388,6 +2388,14 @@
   resolved "https://registry.yarnpkg.com/@timsuchanek/sleep-promise/-/sleep-promise-8.0.1.tgz#81c0754b345138a519b51c2059771eb5f9b97818"
   integrity sha512-cxHYbrXfnCWsklydIHSw5GCMHUPqpJ/enxWSyVHNOgNe61sit/+aOXTTI+VOdWkvVaJsI2vsB9N4+YDNITawOQ==
 
+"@tinymce/tinymce-react@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-4.1.0.tgz#e2a5e289dc1af03837365bebe969b1a722bf6d99"
+  integrity sha512-7qXheXhyY9a8mY5tXQUz3BFq+Z4TQ7zd/OIaKasbVzojkjCw3VWdwFhHOEcwmDDprepgQwECsYqe3AGOtehfFg==
+  dependencies:
+    prop-types "^15.6.2"
+    tinymce "^6.0.0 || ^5.5.1"
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
@@ -9525,7 +9533,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -11305,6 +11313,11 @@ timers-browserify@2.0.12, timers-browserify@^2.0.4:
   integrity sha512-9phl76Cqm6FhSX9Xe1ZUAMLtm1BLkKj2Qd5ApyWkXzsMRaA7dgr81kf4wJmQf/hAvg8EEyJxDo3du/0KlhPiKQ==
   dependencies:
     setimmediate "^1.0.4"
+
+"tinymce@^6.0.0 || ^5.5.1":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-6.1.0.tgz#a5e13307646f2e6e1fd2923dcb664647afe3a93c"
+  integrity sha512-IdSdMlmuyhpEpUuabhBUaRC2NzZZxP2/CO/F+/54kTaAifB1Et5mKEty03pJYZxl6GBdFgclKRA2UU5JKJtJbA==
 
 tlds@1.231.0:
   version "1.231.0"

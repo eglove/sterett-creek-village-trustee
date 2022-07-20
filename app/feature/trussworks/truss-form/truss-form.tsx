@@ -15,11 +15,13 @@ interface TrussFormProperties {
   fieldSetProperties?: FieldsetProperties &
     FieldsetHTMLAttributes<HTMLFieldSetElement>;
   formProperties?: OptionalFormProps;
+  largeForm?: boolean;
   legend?: string;
   onSubmit: (event: ChangeEvent<HTMLFormElement>) => void;
 }
 
 export const TrussForm = ({
+  largeForm,
   onSubmit,
   formProperties,
   fieldSetProperties,
@@ -29,7 +31,7 @@ export const TrussForm = ({
   legend,
 }: TrussFormProperties): JSX.Element => {
   return (
-    <Form onSubmit={onSubmit} {...formProperties}>
+    <Form large={largeForm} onSubmit={onSubmit} {...formProperties}>
       <Fieldset
         aria-disabled={disabled}
         disabled={disabled}
